@@ -41,6 +41,10 @@ run:$(PROJECT_NAME)
 doc:
 	make -C ./documentation
 
+# Remove all the built files, invoke by `make clean`
+clean:
+	rm -rf $(BUILD) $(DOCUMENTATION_OUTPUT) *.gcda *.gcno *.gcov
+
 # Create new build folder if not present
 $(BUILD):
 	mkdir build

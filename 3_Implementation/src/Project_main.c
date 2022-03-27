@@ -6,7 +6,7 @@
 
 int main(){
 
-    FILE *code=fopen("code.asm","r");
+    FILE *code=fopen("./test/test_code.asm","r");
     char *ins;
     char *Opcode,*Operands[3];
   
