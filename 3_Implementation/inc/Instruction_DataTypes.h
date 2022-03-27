@@ -4,6 +4,7 @@
 //New Data Type for Instruction
 struct Instruction{ 
     char OPCODE[6];
+    int index;
     int hex_value;
     int machine_cycles;
     int size;

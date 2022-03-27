@@ -63,7 +63,8 @@ int process_Hex_Code_0(char Operand_0[],char Operand_1[],char Operand_2[],int k)
             if(strcmp(Operand_0 , "DPTR")==0){
                 hex_Code=0x90;
             }
-            else{           
+            else{      
+                   
                 hex_Code=Instruction_List[k].hex_value;
                 hex_Code=parse_Modifier(hex_Code,Operand_0);
             }
@@ -103,37 +104,37 @@ int process_Hex_Code_0(char Operand_0[],char Operand_1[],char Operand_2[],int k)
     }
 
     //ADD INSTRUCTION
-    if(strcmp(Instruction_List[k].OPCODE, "ADD" )==0){
+    else if(strcmp(Instruction_List[k].OPCODE, "ADD" )==0){
             hex_Code = Instruction_List[k].hex_value;
             hex_Code = parse_Modifier(hex_Code,Operand_1);             
     }
 
     //ADDC INSTRUCTION
-    if(strcmp(Instruction_List[k].OPCODE, "ADDC" )==0){
+    else if(strcmp(Instruction_List[k].OPCODE, "ADDC" )==0){
             hex_Code = Instruction_List[k].hex_value;
             hex_Code = parse_Modifier(hex_Code,Operand_1);             
     }
 
     //SUBB INSTRUCTION
-    if(strcmp(Instruction_List[k].OPCODE, "SUBB" )==0){
+    else if(strcmp(Instruction_List[k].OPCODE, "SUBB" )==0){
             hex_Code = Instruction_List[k].hex_value;
             hex_Code = parse_Modifier(hex_Code,Operand_1);             
     }
 
     //EXCHANGE INSTRUCTION
-    if(strcmp(Instruction_List[k].OPCODE, "XCH" )==0){
+    else if(strcmp(Instruction_List[k].OPCODE, "XCH" )==0){
             hex_Code = Instruction_List[k].hex_value;
             hex_Code = parse_Modifier(hex_Code,Operand_1);             
     }
 
     //EXCHANGE DIRECT INSTRUCTION
-    if(strcmp(Instruction_List[k].OPCODE, "XCHD" )==0){
+    else if(strcmp(Instruction_List[k].OPCODE, "XCHD" )==0){
             hex_Code = Instruction_List[k].hex_value;
             hex_Code = parse_Modifier(hex_Code,Operand_1);             
     }
 
     //INC INSTRUCTION
-    if(strcmp(Instruction_List[k].OPCODE, "INC" )==0){
+    else if(strcmp(Instruction_List[k].OPCODE, "INC" )==0){
         if(strcmp(Operand_0 , "DPTR")==0){
                 hex_Code=0xA3;
         }   
@@ -144,7 +145,7 @@ int process_Hex_Code_0(char Operand_0[],char Operand_1[],char Operand_2[],int k)
     }
 
     //DEC INSTRUCTION
-    if(strcmp(Instruction_List[k].OPCODE, "DEC" )==0){
+    else if(strcmp(Instruction_List[k].OPCODE, "DEC" )==0){
 
         hex_Code = Instruction_List[k].hex_value;
         hex_Code = parse_Modifier(hex_Code,Operand_0);             
@@ -152,7 +153,7 @@ int process_Hex_Code_0(char Operand_0[],char Operand_1[],char Operand_2[],int k)
     }
 
     //COMPARE WITH JUMP INSTRUCTION
-    if(strcmp(Instruction_List[k].OPCODE, "CJNE" )==0){
+    else if(strcmp(Instruction_List[k].OPCODE, "CJNE" )==0){
 
         if( strcmp(Operand_0,"A") == 0 && strchr(Operand_1,'H') ){
 
@@ -169,7 +170,7 @@ int process_Hex_Code_0(char Operand_0[],char Operand_1[],char Operand_2[],int k)
     }
 
     //DJNZ INSTRUCTION
-    if(strcmp(Instruction_List[k].OPCODE, "DJNZ" )==0){
+    else if(strcmp(Instruction_List[k].OPCODE, "DJNZ" )==0){
 
         hex_Code = Instruction_List[k].hex_value;
         hex_Code = parse_Modifier(hex_Code,Operand_0);             
@@ -177,55 +178,55 @@ int process_Hex_Code_0(char Operand_0[],char Operand_1[],char Operand_2[],int k)
     }
 
     //JBC INSTRUCTION
-    if(strcmp(Instruction_List[k].OPCODE, "JBC" )==0) hex_Code = Instruction_List[k].hex_value;
+    else if(strcmp(Instruction_List[k].OPCODE, "JBC" )==0) hex_Code = Instruction_List[k].hex_value;
 
     //JB INSTRUCTION
-    if(strcmp(Instruction_List[k].OPCODE, "JB" )==0) hex_Code = Instruction_List[k].hex_value;
+    else if(strcmp(Instruction_List[k].OPCODE, "JB" )==0) hex_Code = Instruction_List[k].hex_value;
 
     //JNB INSTRUCTION
-    if(strcmp(Instruction_List[k].OPCODE, "JNB" )==0) hex_Code = Instruction_List[k].hex_value;
+    else if(strcmp(Instruction_List[k].OPCODE, "JNB" )==0) hex_Code = Instruction_List[k].hex_value;
 
     //JC INSTRUCTION
-    if(strcmp(Instruction_List[k].OPCODE, "JC" )==0) hex_Code = Instruction_List[k].hex_value;    
+    else if(strcmp(Instruction_List[k].OPCODE, "JC" )==0) hex_Code = Instruction_List[k].hex_value;    
 
     //JNC INSTRUCTION
-    if(strcmp(Instruction_List[k].OPCODE, "JNC" )==0) hex_Code = Instruction_List[k].hex_value;
+    else if(strcmp(Instruction_List[k].OPCODE, "JNC" )==0) hex_Code = Instruction_List[k].hex_value;
 
     //JZ INSTRUCTION
-    if(strcmp(Instruction_List[k].OPCODE, "JZ" )==0) hex_Code = Instruction_List[k].hex_value;
+    else if(strcmp(Instruction_List[k].OPCODE, "JZ" )==0) hex_Code = Instruction_List[k].hex_value;
 
     //JNZ INSTRUCTION
-    if(strcmp(Instruction_List[k].OPCODE, "JNZ" )==0) hex_Code = Instruction_List[k].hex_value;
+    else if(strcmp(Instruction_List[k].OPCODE, "JNZ" )==0) hex_Code = Instruction_List[k].hex_value;
 
     //JMP INSTRUCTION
-    if(strcmp(Instruction_List[k].OPCODE, "JMP" )==0) hex_Code = Instruction_List[k].hex_value;    
+    else if(strcmp(Instruction_List[k].OPCODE, "JMP" )==0) hex_Code = Instruction_List[k].hex_value;    
 
     //LCALL 
-    if(strcmp(Instruction_List[k].OPCODE, "LCALL" )==0) hex_Code = Instruction_List[k].hex_value;
+    else if(strcmp(Instruction_List[k].OPCODE, "LCALL" )==0) hex_Code = Instruction_List[k].hex_value;
 
     //RET INSTRUCTION
-    if(strcmp(Instruction_List[k].OPCODE, "RET" )==0) hex_Code = Instruction_List[k].hex_value;
+    else if(strcmp(Instruction_List[k].OPCODE, "RET" )==0) hex_Code = Instruction_List[k].hex_value;
 
     //RETI INSTRUCTION
-    if(strcmp(Instruction_List[k].OPCODE, "RETI" )==0) hex_Code = Instruction_List[k].hex_value;
+    else if(strcmp(Instruction_List[k].OPCODE, "RETI" )==0) hex_Code = Instruction_List[k].hex_value;
 
     //RL INSTRUCTION
-    if(strcmp(Instruction_List[k].OPCODE, "RL" )==0) hex_Code = Instruction_List[k].hex_value;
+    else if(strcmp(Instruction_List[k].OPCODE, "RL" )==0) hex_Code = Instruction_List[k].hex_value;
 
     //RLC INSTRUCTION
-    if(strcmp(Instruction_List[k].OPCODE, "RLC" )==0) hex_Code = Instruction_List[k].hex_value;    
+    else if(strcmp(Instruction_List[k].OPCODE, "RLC" )==0) hex_Code = Instruction_List[k].hex_value;    
 
     //RR 
-    if(strcmp(Instruction_List[k].OPCODE, "RR" )==0) hex_Code = Instruction_List[k].hex_value;
+    else if(strcmp(Instruction_List[k].OPCODE, "RR" )==0) hex_Code = Instruction_List[k].hex_value;
 
     //RRC INSTRUCTION
-    if(strcmp(Instruction_List[k].OPCODE, "RRC" )==0) hex_Code = Instruction_List[k].hex_value;
+    else if(strcmp(Instruction_List[k].OPCODE, "RRC" )==0) hex_Code = Instruction_List[k].hex_value;
 
     //SWAP INSTRUCTION
-    if(strcmp(Instruction_List[k].OPCODE, "SWAP" )==0) hex_Code = Instruction_List[k].hex_value;
+    else if(strcmp(Instruction_List[k].OPCODE, "SWAP" )==0) hex_Code = Instruction_List[k].hex_value;
    
     //LOGICAL INSTRUCTION
-    if( strcmp( Instruction_List[k].OPCODE, "ANL") || strcmp( Instruction_List[k].OPCODE, "ORL") || strcmp( Instruction_List[k].OPCODE, "XRL") ){
+    else if( strcmp( Instruction_List[k].OPCODE, "ANL") || strcmp( Instruction_List[k].OPCODE, "ORL") || strcmp( Instruction_List[k].OPCODE, "XRL") ){
         hex_Code=Instruction_List[k].hex_value;
         if ( Operand_1[0] == '#' && strchr(Operand_0, 'H')){
             
@@ -296,39 +297,68 @@ int process_Hex_Code_0(char Operand_0[],char Operand_1[],char Operand_2[],int k)
         }
     }
 
-
-        
-
-
-
     return hex_Code;
 }
 
 
 
-char* process_Hex_Code_1(char Operand_0[],char Operand_1[],char Operand_2[]){
-    char *hex_Code_1=(char*)malloc(2*sizeof(char));
+char* process_Hex_Code_1(char Operand_0[],char Operand_1[],char Operand_2[],int k){
+    char *hex_Code_1=(char*)malloc(2*sizeof(char)); //Allocate memory for return string
     char Op[6];
-    if(strcmp(Operand_0,"DPTR")==0 || Operand_0[0]=='@' || Operand_0[0]=='R' )
-        strcpy(Op,Operand_1);    
+    if( k == 1 || k == 32 || k == 33 || k == 34 || ( k >= 7 && k <= 9 ) || ( k >= 38 && k <=39 )){ //For MOV Instruction
+        if(strcmp(Operand_0,"DPTR") == 0 || Operand_0[0] == '@' || Operand_0[0] == 'R' ) //DPTR or Indirect addressing or Register addressing
+            strcpy(Op,Operand_1);    
 
-    else if ( strlen(Operand_0)==1 && !( Operand_0[0] >= '0' && Operand_0[0] <= '9') ){
-        strcpy(Op,Operand_1);  
-    }
+        else if ( strlen(Operand_0) == 1 && !( Operand_0[0] >= '0' && Operand_0[0] <= '9') ){ //MOV A or C
+            strcpy(Op,Operand_1);  
+        }
 
-    else
-    {
-        strcpy(Op,Operand_0);
-    }
+        else
+        {
+            strcpy(Op,Operand_0);
+        }
 
-    if(Op[0]=='#'){//Check if it's a immidiate value or not
+        if(Op[0]=='#'){//Check if it's a immidiate value or not
             hex_Code_1[0]=(char)Op[1];
             hex_Code_1[1]=(char)Op[2];
-         }
-    else{
+            }
+        else{
             hex_Code_1[0]=(char)Op[0];
             hex_Code_1[1]=(char)Op[1];
+            }
+    }
+    else if ( k == 5 || k == 6 || k == 40 || k == 41 || ( k >= 27 && k <= 37 )){ //For ADD, ADDC, SUBB, INC, DEC Instruction
+        if(Operand_0[0]=='#'){//Check if it's a immidiate value or not
+            hex_Code_1[0]=(char)Operand_0[1];
+            hex_Code_1[1]=(char)Operand_0[2];
+            }
+        else{
+            hex_Code_1[0]='0';
+            hex_Code_1[1]='0';
         }
+    }
+    else if ( k >= 42 && k <= 44 ){ //For MUL DIV DA
+        hex_Code_1[0]='0';
+        hex_Code_1[1]='0';               
+    }
+    else if ( k == 10 ) {
+        if(Operand_1[0]=='#'){//Check if it's a immidiate value or not
+            hex_Code_1[0]=(char)Operand_1[1];
+            hex_Code_1[1]=(char)Operand_1[2];
+            }
+        else{
+            hex_Code_1[0]=(char)Operand_1[0];
+            hex_Code_1[1]=(char)Operand_1[1];
+            }       
+    }
+    else if ( k == 11 ) {
+        if ( Operand_0[0] == 'R' ){
+            strcpy( hex_Code_1, Operand_1 );
+        }
+        else{
+            strcpy( hex_Code_1, Operand_0 );
+        }
+    }
 
     hex_Code_1[2]='\0';
     //printf("%s",hex_Code);

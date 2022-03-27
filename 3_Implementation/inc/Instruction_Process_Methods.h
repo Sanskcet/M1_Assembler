@@ -13,8 +13,8 @@ int get_Number_of_Operands(char* Opcode);
 void Remove_Whitespaces(char inst[]);
 
 int process_Hex_Code_0(char Operand_0[],char Operand_1[],char Operand_2[],int k);
-char* process_Hex_Code_1(char Operand_0[],char Operand_1[],char Operand_2[]);
-char* process_Hex_Code_2(char Operand_0[],char Operand_1[],char Operand_2[]);
+char* process_Hex_Code_1(char Operand_0[],char Operand_1[],char Operand_2[],int k);
+char* process_Hex_Code_2(char Operand_0[],char Operand_1[],char Operand_2[],int k);
 int match_Opcode(char Operands[]);
 
 #endif
