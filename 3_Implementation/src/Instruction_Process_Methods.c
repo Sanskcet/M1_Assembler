@@ -5,7 +5,7 @@
 
 void shiftStringLeft(char inst[],int i){
     int k=0;
-    while((i+k)<strlen(inst)){
+    while( (i+k) < strlen(inst) ){
         inst[k]=inst[k+i];
         k++;
     }
@@ -32,14 +32,15 @@ void Read_Opcode(char inst[],char* Opcode){
 void Read_Operand(char inst[],char* Operand_1){
     char *c;
     c=strchr(inst,',');
-    if(c==NULL){
-        Remove_Whitespaces(inst);
-        strcpy(Operand_1,inst);
+    if( c == NULL ){
+        Remove_Whitespaces( inst );
+        strcpy( Operand_1, inst );
     }
     else{
-    strncpy(Operand_1,inst,(c-inst));
-    Remove_Whitespaces(inst);
-    shiftStringLeft(inst,c-inst+1);
+    Remove_Whitespaces( inst );
+    strncpy( Operand_1, inst, (c-inst) );
+    Remove_Whitespaces( inst );
+    shiftStringLeft( inst, c-inst+1 );
 }
     
 

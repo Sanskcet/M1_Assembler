@@ -69,7 +69,7 @@ int main(){
 
             Hex_Code_Operand = process_Hex_Code_0(Operands[0],Operands[1],Operands[2],k);  
             strcpy(Hex_Code_1 , process_Hex_Code_1(Operands[0],Operands[1],Operands[2],k));
-            strcpy(Hex_Code_2 , process_Hex_Code_2(Operands[0],Operands[1],Operands[2],k));
+            strcpy(Hex_Code_2 , process_Hex_Code_2(Operands[0],Operands[1],Operands[2],k,Number_of_Operands));
 
             //printf("%s\n",Operands[1]);
             //printf("%s\n",inst);
@@ -81,7 +81,7 @@ int main(){
         }
 
         printf("%x %s %s\n\n",Hex_Code_Operand,Hex_Code_1,Hex_Code_2);
-        
+
         for(int j=0;j<Number_of_Operands;j++){
             free(Operands[j]);
         }

@@ -306,9 +306,14 @@ char* process_Hex_Code_1(char Operand_0[],char Operand_1[],char Operand_2[],int 
     char *hex_Code_1=(char*)malloc(2*sizeof(char)); //Allocate memory for return string
     char Op[6];
     if( k == 1 || k == 32 || k == 33 || k == 34 || ( k >= 7 && k <= 9 ) || ( k >= 38 && k <=39 )){ //For MOV Instruction
-        if(strcmp(Operand_0,"DPTR") == 0 || Operand_0[0] == '@' || Operand_0[0] == 'R' ) //DPTR or Indirect addressing or Register addressing
-            strcpy(Op,Operand_1);    
-
+        if( strcmp(Operand_0,"DPTR") == 0 ) //DPTR 
+            strcpy(Op,Operand_1);   
+         
+        else if ( ( strcmp(Operand_0,"A") == 0 ||  Operand_0[0] == '@' || Operand_0[0] == 'R') && ( strcmp(Operand_1,"A") == 0 || Operand_1[0] == '@' || Operand_1[0] == 'R') ){//Indirect addressing or Register addressing
+            strcpy( Op, "00");
+        }
+        else if ( strcmp(Operand_0,"A") == 0 || Operand_0[0] == '@' || Operand_0[0] == 'R') //Indirect addressing or Register addressing
+            strcpy(Op,Operand_1); 
         else if ( strlen(Operand_0) == 1 && !( Operand_0[0] >= '0' && Operand_0[0] <= '9') ){ //MOV A or C
             strcpy(Op,Operand_1);  
         }
@@ -327,22 +332,28 @@ char* process_Hex_Code_1(char Operand_0[],char Operand_1[],char Operand_2[],int 
             hex_Code_1[1]=(char)Op[1];
             }
     }
-    else if ( k == 5 || k == 6 || k == 40 || k == 41 || ( k >= 27 && k <= 37 )){ //For ADD, ADDC, SUBB, INC, DEC Instruction
+    else if ( k == 5 || k == 6 || k == 40 || k == 41 || ( k >= 27 && k <= 37 )){ //For INC, DEC, PUSH, POP, LOGICAL Instruction
         if(Operand_0[0]=='#'){//Check if it's a immidiate value or not
             hex_Code_1[0]=(char)Operand_0[1];
             hex_Code_1[1]=(char)Operand_0[2];
-            }
+        }
+        else if ( strchr( Operand_0,'H') ){ //Check if it's a direct address or not
+            hex_Code_1[0] = Operand_0[0];
+            hex_Code_1[1] = Operand_0[1];
+        }
         else{
             hex_Code_1[0]='0';
             hex_Code_1[1]='0';
         }
     }
-    else if ( k >= 42 && k <= 44 ){ //For MUL DIV DA
+    else if ( (k >= 42 && k <= 44) || k == 2 || k == 3 ){ //For MUL DIV DA MOVX MOVC
         hex_Code_1[0]='0';
         hex_Code_1[1]='0';               
     }
-    else if ( k == 10 ) {
+    else if ( k == 10 ) { //CJNE
+ 
         if(Operand_1[0]=='#'){//Check if it's a immidiate value or not
+            //printf("%s\n",Operand_1);
             hex_Code_1[0]=(char)Operand_1[1];
             hex_Code_1[1]=(char)Operand_1[2];
             }
@@ -351,12 +362,12 @@ char* process_Hex_Code_1(char Operand_0[],char Operand_1[],char Operand_2[],int 
             hex_Code_1[1]=(char)Operand_1[1];
             }       
     }
-    else if ( k == 11 ) {
+    else if ( k == 11 ) { //DJNZ
         if ( Operand_0[0] == 'R' ){
-            strcpy( hex_Code_1, Operand_1 );
+            strncpy( hex_Code_1, Operand_1, 2);
         }
         else{
-            strcpy( hex_Code_1, Operand_0 );
+            strncpy( hex_Code_1, Operand_0, 2);
         }
     }
 
@@ -366,43 +377,52 @@ char* process_Hex_Code_1(char Operand_0[],char Operand_1[],char Operand_2[],int 
     return hex_Code_1;
 }
 
-char* process_Hex_Code_2(char Operand_0[],char Operand_1[],char Operand_2[],int k){
+char* process_Hex_Code_2(char Operand_0[],char Operand_1[],char Operand_2[],int k,int Number_of_Operands){
     char Op[6];
     char *hex_Code=(char*)malloc(2*sizeof(char));
-    if(strcmp(Operand_0,"DPTR")==0){
-        strcpy(Op,Operand_1); 
-        if(strchr(Op,'H')){//Check if it's a Hexadecimal Value or Decimal Value
-        if(Op[0]=='#'){//Check if it's a immidiate value or not
-            //printf("H\n");
-            hex_Code[0]=Op[3];
-            hex_Code[1]=Op[4];
+    if( Number_of_Operands == 2){
+        if(strcmp(Operand_0,"DPTR")==0){
+            strcpy(Op,Operand_1); 
+            if(strchr(Op,'H')){//Check if it's a Hexadecimal Value or Decimal Value
+            if(Op[0]=='#'){//Check if it's a immidiate value or not
+                //printf("H\n");
+                hex_Code[0]=Op[3];
+                hex_Code[1]=Op[4];
+            }
+            else{
+                hex_Code[0]=Op[2];
+                hex_Code[1]=Op[3];
+            }
         }
         else{
-            hex_Code[0]=Op[2];
-            hex_Code[1]=Op[3];
-        }
-    }
-    else{
-                //Code to convert Integer to Hex            
-        }
-    }
-
-    else if ( strcmp(Operand_0,"A")==0 || Operand_0[0]=='@' || Operand_0[0]=='R' || strcmp(Operand_1,"A")==0 || Operand_1[0]=='@' || Operand_1[0]=='R' ) {
-        hex_Code[0]='0';
-        hex_Code[1]='0';
-    }
-
-    else{
-
-        if(Operand_1[0]=='#'){//Check if it's a immidiate value or not
-                hex_Code[0]=(char)Operand_1[1];
-                hex_Code[1]=(char)Operand_1[2];
+                    //Code to convert Integer to Hex            
             }
+        }
+
+        else if ( strcmp(Operand_0,"A")==0 || Operand_0[0]=='@' || Operand_0[0]=='R' || strcmp(Operand_1,"A")==0 || Operand_1[0]=='@' || Operand_1[0]=='R' ) {
+            hex_Code[0]='0';
+            hex_Code[1]='0';
+        }
         else{
-                hex_Code[0]=(char)Operand_1[0];
-                hex_Code[1]=(char)Operand_1[1];
-            }
 
+            if(Operand_1[0]=='#'){//Check if it's a immidiate value or not
+                    hex_Code[0]=(char)Operand_1[1];
+                    hex_Code[1]=(char)Operand_1[2];
+                }
+            else{
+                    hex_Code[0]=(char)Operand_1[0];
+                    hex_Code[1]=(char)Operand_1[1];
+                }
+
+        }
+    }
+    else if ( Number_of_Operands == 1 ){
+            hex_Code[0] = '0';
+            hex_Code[1] = '0';
+    }
+    else { 
+        hex_Code[0] = Operand_2[0];
+        hex_Code[1] = Operand_2[1];
     }   
 
     hex_Code[2]='\0';
