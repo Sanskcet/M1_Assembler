@@ -1,0 +1,27 @@
+\doxysection{Instruction\+\_\+\+Process\+\_\+\+Methods.\+h}
+\label{_instruction___process___methods_8h_source}\index{inc/Instruction\_Process\_Methods.h@{inc/Instruction\_Process\_Methods.h}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#ifndef INSTRUCTION\_PROCESS\_H}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#define INSTRUCTION\_PROCESS\_H}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include<stdio.h>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include "{}Instruction\_DataTypes.h"{}}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include<stdbool.h>}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{keywordtype}{char}* Read\_Instruction(FILE *code,\textcolor{keywordtype}{char}* inst);}
+\DoxyCodeLine{19 \textcolor{keywordtype}{void} Read\_Opcode(\textcolor{keywordtype}{char} inst[],\textcolor{keywordtype}{char}* Opcode);}
+\DoxyCodeLine{20 \textcolor{keywordtype}{void} Read\_Operand(\textcolor{keywordtype}{char} inst[],\textcolor{keywordtype}{char}* Operand\_1);}
+\DoxyCodeLine{21 \textcolor{keywordtype}{void} shiftStringLeft(\textcolor{keywordtype}{char} inst[],\textcolor{keywordtype}{int} i);}
+\DoxyCodeLine{22 \textcolor{keywordtype}{int} get\_Number\_of\_Operands(\textcolor{keywordtype}{char}* Opcode);}
+\DoxyCodeLine{23 \textcolor{keywordtype}{void} Remove\_Whitespaces(\textcolor{keywordtype}{char} inst[]);}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{keywordtype}{int} process\_Hex\_Code\_0(\textcolor{keywordtype}{char} Operand\_0[],\textcolor{keywordtype}{char} Operand\_1[],\textcolor{keywordtype}{char} Operand\_2[],\textcolor{keywordtype}{int} k);}
+\DoxyCodeLine{26 \textcolor{keywordtype}{char}* process\_Hex\_Code\_1(\textcolor{keywordtype}{char} Operand\_0[],\textcolor{keywordtype}{char} Operand\_1[],\textcolor{keywordtype}{char} Operand\_2[],\textcolor{keywordtype}{int} k);}
+\DoxyCodeLine{27 \textcolor{keywordtype}{char}* process\_Hex\_Code\_2(\textcolor{keywordtype}{char} Operand\_0[],\textcolor{keywordtype}{char} Operand\_1[],\textcolor{keywordtype}{char} Operand\_2[],\textcolor{keywordtype}{int} k,\textcolor{keywordtype}{int} Number\_of\_Operands);}
+\DoxyCodeLine{28 \textcolor{keywordtype}{int} match\_Opcode(\textcolor{keywordtype}{char} Operands[]);}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

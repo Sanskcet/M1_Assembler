@@ -1,3 +1,13 @@
+/**
+ * @file Instruction_Process_Methods.h
+ * @author Sanjeeve R (18euee122@skcet.ac.in)
+ * @brief Header file to declare functions required for processing instructions
+ * @version 0.1
+ * @date 2022-03-30
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #ifndef INSTRUCTION_PROCESS_H
 #define INSTRUCTION_PROCESS_H
 

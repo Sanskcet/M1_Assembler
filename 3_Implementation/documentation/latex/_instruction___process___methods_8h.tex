@@ -1,0 +1,60 @@
+\doxysection{inc/\+Instruction\+\_\+\+Process\+\_\+\+Methods.h File Reference}
+\label{_instruction___process___methods_8h}\index{inc/Instruction\_Process\_Methods.h@{inc/Instruction\_Process\_Methods.h}}
+
+
+Header file to declare functions required for processing instructions.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Instruction\+\_\+\+Data\+Types.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{_instruction___process___methods_8h_a94043b6f7395f28c86adfe0ea667ff90}} 
+char $\ast$ {\bfseries Read\+\_\+\+Instruction} (FILE $\ast$code, char $\ast$inst)
+\item 
+\mbox{\label{_instruction___process___methods_8h_a8af2a0ab895f76ee52341945f3090723}} 
+void {\bfseries Read\+\_\+\+Opcode} (char inst[$\,$], char $\ast$Opcode)
+\item 
+\mbox{\label{_instruction___process___methods_8h_a9141b4c5ba7be05f14cd036af67d0cc6}} 
+void {\bfseries Read\+\_\+\+Operand} (char inst[$\,$], char $\ast$Operand\+\_\+1)
+\item 
+\mbox{\label{_instruction___process___methods_8h_a03fd8a993f2f6d5e94892dc7900808fe}} 
+void {\bfseries shift\+String\+Left} (char inst[$\,$], int i)
+\item 
+\mbox{\label{_instruction___process___methods_8h_ad5c2458464b2605c633491fac8707834}} 
+int {\bfseries get\+\_\+\+Number\+\_\+of\+\_\+\+Operands} (char $\ast$Opcode)
+\item 
+\mbox{\label{_instruction___process___methods_8h_a9b3d99ed62b01e4c4704d4a6bef46082}} 
+void {\bfseries Remove\+\_\+\+Whitespaces} (char inst[$\,$])
+\item 
+\mbox{\label{_instruction___process___methods_8h_a1da72cf6d229ee389e9bcc24240b58e8}} 
+int {\bfseries process\+\_\+\+Hex\+\_\+\+Code\+\_\+0} (char Operand\+\_\+0[$\,$], char Operand\+\_\+1[$\,$], char Operand\+\_\+2[$\,$], int k)
+\item 
+\mbox{\label{_instruction___process___methods_8h_a4be6386b0b653b25307c4f304c4babbe}} 
+char $\ast$ {\bfseries process\+\_\+\+Hex\+\_\+\+Code\+\_\+1} (char Operand\+\_\+0[$\,$], char Operand\+\_\+1[$\,$], char Operand\+\_\+2[$\,$], int k)
+\item 
+\mbox{\label{_instruction___process___methods_8h_a532330b26e5508a59378ea04c997e252}} 
+char $\ast$ {\bfseries process\+\_\+\+Hex\+\_\+\+Code\+\_\+2} (char Operand\+\_\+0[$\,$], char Operand\+\_\+1[$\,$], char Operand\+\_\+2[$\,$], int k, int Number\+\_\+of\+\_\+\+Operands)
+\item 
+\mbox{\label{_instruction___process___methods_8h_a7287f823eb319215298e2f35a27ca6e8}} 
+int {\bfseries match\+\_\+\+Opcode} (char Operands[$\,$])
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file to declare functions required for processing instructions. 
+
+\begin{DoxyAuthor}{Author}
+Sanjeeve R ({\texttt{ 18euee122@skcet.\+ac.\+in}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/03-\/30
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}

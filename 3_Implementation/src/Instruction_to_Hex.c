@@ -1,22 +1,32 @@
+/**
+ * @file Instruction_to_Hex.c
+ * @author Sanjeeve R (18euee122@skcet.ac.in)
+ * @brief  Contains function definitions required to convert an Instruction to the equivalent Hex Code
+ * @version 0.1
+ * @date 2022-03-30
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include <string.h>
 #include <stdlib.h>
 #include "Instruction_Set.h"
 #include <stdio.h>
 
 
-int match_Opcode(char Opcode[]){
+int match_Opcode(char Opcode[]){ //Matches the Opcode in the Instruction to that in the Instruction_Set.h file
     int k=0;
     while(strcmp(Opcode,Instruction_List[k].OPCODE)){
         k++;
         
-        if(k>=46){
+        if(k>=46){ //45 Instructions are defined. If k value is greater than 45, return 50 which means to raise error.
             return 50;
         }
     } 
     return k;
 }
 
-int Modifiers(char Operands[]){
+int Modifiers(char Operands[]){ //Preset Modifiers for the Instruction
     
     if( (Operands[0]=='A') && (strlen(Operands)==1) )
         return 0x04;
@@ -45,20 +55,18 @@ int Modifiers(char Operands[]){
     else
         return 0;
 }
-int parse_Modifier(int hex_Code,char Operand[]){
+int parse_Modifier(int hex_Code,char Operand[]){ //Incorporate the Modifier with the hex code
     int temp;
     if(temp=Modifiers(Operand)){
-       // printf("%d\n",temp);
         hex_Code=hex_Code/16;
         hex_Code=hex_Code*16 + temp;
     }
 }
-int process_Hex_Code_0(char Operand_0[],char Operand_1[],char Operand_2[],int k){
+int process_Hex_Code_0(char Operand_0[],char Operand_1[],char Operand_2[],int k){ //Process the first hex code
     int hex_Code=0;
     
-    //printf("%s",Instruction_List[k].OPCODE);
     //MOV INSTRUCTION PROCESSING
-    if(strcmp(Instruction_List[k].OPCODE, "MOV" )==0){
+    if( strcmp(Instruction_List[k].OPCODE, "MOV" ) == 0){  
         if(Operand_1[0]=='#'){
             if(strcmp(Operand_0 , "DPTR")==0){
                 hex_Code=0x90;
@@ -231,9 +239,9 @@ int process_Hex_Code_0(char Operand_0[],char Operand_1[],char Operand_2[],int k)
         if ( Operand_1[0] == '#' && strchr(Operand_0, 'H')){
             
         }
-        else if ( strcmp( Operand_0, "C") == 0 && strcmp( Instruction_List[k].OPCODE, "ORL"))
+        else if ( strcmp( Operand_0, "C") == 0 && strcmp( Instruction_List[k].OPCODE, "ORL") )
             hex_Code = 0x72;
-        else if ( strcmp( Operand_0, "C") == 0 && strcmp( Instruction_List[k].OPCODE, "ANL"))
+        else if ( strcmp( Operand_0, "C") == 0 && strcmp( Instruction_List[k].OPCODE, "ANL") )
             hex_Code = 0x82;
         else if ( strcmp(Operand_1, "A") == 0 ){
             hex_Code = 0x52;
@@ -302,20 +310,20 @@ int process_Hex_Code_0(char Operand_0[],char Operand_1[],char Operand_2[],int k)
 
 
 
-char* process_Hex_Code_1(char Operand_0[],char Operand_1[],char Operand_2[],int k){
+char* process_Hex_Code_1(char Operand_0[],char Operand_1[],char Operand_2[],int k){ //Process the second hex code
     char *hex_Code_1=(char*)malloc(2*sizeof(char)); //Allocate memory for return string
     char Op[6];
-    if( k == 1 || k == 32 || k == 33 || k == 34 || ( k >= 7 && k <= 9 ) || ( k >= 38 && k <=39 )){ //For MOV Instruction
+    if( k == 1 || k == 32 || k == 33 || k == 34 || ( k >= 7 && k <= 9 ) || ( k >= 38 && k <=39 )){ //For MOV, ORL, XRL, ANL, XCH, XCHD, ADD, ADDC, SUBB Instruction
         if( strcmp(Operand_0,"DPTR") == 0 ) //DPTR 
-            strcpy(Op,Operand_1);   
+            strcpy( Op, Operand_1 );   
          
         else if ( ( strcmp(Operand_0,"A") == 0 ||  Operand_0[0] == '@' || Operand_0[0] == 'R') && ( strcmp(Operand_1,"A") == 0 || Operand_1[0] == '@' || Operand_1[0] == 'R') ){//Indirect addressing or Register addressing
             strcpy( Op, "00");
         }
         else if ( strcmp(Operand_0,"A") == 0 || Operand_0[0] == '@' || Operand_0[0] == 'R') //Indirect addressing or Register addressing
-            strcpy(Op,Operand_1); 
+            strcpy( Op, Operand_1 ); 
         else if ( strlen(Operand_0) == 1 && !( Operand_0[0] >= '0' && Operand_0[0] <= '9') ){ //MOV A or C
-            strcpy(Op,Operand_1);  
+            strcpy( Op, Operand_1 );  
         }
 
         else
@@ -323,7 +331,7 @@ char* process_Hex_Code_1(char Operand_0[],char Operand_1[],char Operand_2[],int 
             strcpy(Op,Operand_0);
         }
 
-        if(Op[0]=='#'){//Check if it's a immidiate value or not
+        if( Op[0] == '#' ){//Check if it's a immidiate value or not
             hex_Code_1[0]=(char)Op[1];
             hex_Code_1[1]=(char)Op[2];
             }
@@ -332,7 +340,7 @@ char* process_Hex_Code_1(char Operand_0[],char Operand_1[],char Operand_2[],int 
             hex_Code_1[1]=(char)Op[1];
             }
     }
-    else if ( k == 5 || k == 6 || k == 40 || k == 41 || ( k >= 27 && k <= 37 )){ //For INC, DEC, PUSH, POP, LOGICAL Instruction
+    else if ( k == 5 || k == 6 || k == 40 || k == 41 || ( k >= 27 && k <= 31 ) || ( k >= 35 && k <= 37 ) ){ //For INC, DEC, PUSH, POP, LOGICAL Instruction
         if(Operand_0[0]=='#'){//Check if it's a immidiate value or not
             hex_Code_1[0]=(char)Operand_0[1];
             hex_Code_1[1]=(char)Operand_0[2];
@@ -350,10 +358,9 @@ char* process_Hex_Code_1(char Operand_0[],char Operand_1[],char Operand_2[],int 
         hex_Code_1[0]='0';
         hex_Code_1[1]='0';               
     }
-    else if ( k == 10 ) { //CJNE
+    else if ( k == 10 ) { //CJNE Instruction
  
         if(Operand_1[0]=='#'){//Check if it's a immidiate value or not
-            //printf("%s\n",Operand_1);
             hex_Code_1[0]=(char)Operand_1[1];
             hex_Code_1[1]=(char)Operand_1[2];
             }
@@ -362,7 +369,7 @@ char* process_Hex_Code_1(char Operand_0[],char Operand_1[],char Operand_2[],int 
             hex_Code_1[1]=(char)Operand_1[1];
             }       
     }
-    else if ( k == 11 ) { //DJNZ
+    else if ( k == 11 ) { //DJNZ Instruction
         if ( Operand_0[0] == 'R' ){
             strncpy( hex_Code_1, Operand_1, 2);
         }
@@ -372,20 +379,17 @@ char* process_Hex_Code_1(char Operand_0[],char Operand_1[],char Operand_2[],int 
     }
 
     hex_Code_1[2]='\0';
-    //printf("%s",hex_Code);
-    //printf("%s\n",hex_Code_1);
     return hex_Code_1;
 }
 
-char* process_Hex_Code_2(char Operand_0[],char Operand_1[],char Operand_2[],int k,int Number_of_Operands){
+char* process_Hex_Code_2(char Operand_0[],char Operand_1[],char Operand_2[],int k,int Number_of_Operands){ //Process third Hex Code
     char Op[6];
     char *hex_Code=(char*)malloc(2*sizeof(char));
-    if( Number_of_Operands == 2){
-        if(strcmp(Operand_0,"DPTR")==0){
-            strcpy(Op,Operand_1); 
-            if(strchr(Op,'H')){//Check if it's a Hexadecimal Value or Decimal Value
-            if(Op[0]=='#'){//Check if it's a immidiate value or not
-                //printf("H\n");
+    if( Number_of_Operands == 2 ){ //Check if Number of Operands in the instruction is 2
+        if( strcmp( Operand_0, "DPTR" ) == 0 ){
+            strcpy( Op, Operand_1 ); 
+            if( strchr(Op,'H') ){//Check if it's a Hexadecimal Value or Decimal Value
+            if( Op[0] == '#' ){//Check if it's a immidiate value or not
                 hex_Code[0]=Op[3];
                 hex_Code[1]=Op[4];
             }
@@ -416,16 +420,15 @@ char* process_Hex_Code_2(char Operand_0[],char Operand_1[],char Operand_2[],int 
 
         }
     }
-    else if ( Number_of_Operands == 1 ){
+    else if ( Number_of_Operands == 1 ){ //Check if Number of Operands is One
             hex_Code[0] = '0';
             hex_Code[1] = '0';
     }
-    else { 
+    else { //If Number of Operands is three viz CJNE
         hex_Code[0] = Operand_2[0];
         hex_Code[1] = Operand_2[1];
     }   
 
     hex_Code[2]='\0';
-    //printf("%s\n",hex_Code);
     return hex_Code;
 }

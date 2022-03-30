@@ -1,9 +1,20 @@
+/**
+ * @file Instruction_Process_Methods.c
+ * @author Sanjeeve R (18euee122@skcet.ac.in)
+ * @brief  Contains function definitions for processing the instructions
+ * @version 0.1
+ * @date 2022-03-30
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
 #include "Instruction_DataTypes.h"
 #include<stdio.h>
 #include<stdbool.h>
 #include<string.h>
 
-void shiftStringLeft(char inst[],int i){
+void shiftStringLeft(char inst[],int i){ //Shift String input given in inst by i char
     int k=0;
     while( (i+k) < strlen(inst) ){
         inst[k]=inst[k+i];
@@ -12,7 +23,7 @@ void shiftStringLeft(char inst[],int i){
     inst[k]='\0';
 }
 
-void Remove_Whitespaces(char inst[]){
+void Remove_Whitespaces(char inst[]){ //Remove white spaces in a string
     int i=0;
     while(inst[i]==' '){
         i++;
@@ -20,16 +31,16 @@ void Remove_Whitespaces(char inst[]){
     shiftStringLeft(inst,i);
     
 }
-void Read_Opcode(char inst[],char* Opcode){
+void Read_Opcode(char inst[],char* Opcode){ //Reads the Opcode of a Instruction
     int i=0;
     while(inst[i]!=' '){
         *(Opcode+i)=inst[i];
         i++;
     }
-    shiftStringLeft(inst,i);
+    shiftStringLeft(inst,i); 
     Remove_Whitespaces(inst);
 }
-void Read_Operand(char inst[],char* Operand_1){
+void Read_Operand(char inst[],char* Operand_1){ //Reads Next Operand of an Instruction
     char *c;
     c=strchr(inst,',');
     if( c == NULL ){
@@ -46,7 +57,7 @@ void Read_Operand(char inst[],char* Operand_1){
 
 }
 
-int get_Number_of_Operands(char* Opcode){
+int get_Number_of_Operands(char* Opcode){ //Returns the number of Operands in an Instruction
     if(!strcmp(Opcode,"RET") || !strcmp(Opcode,"RETI") || !strcmp(Opcode,"NOP"))
         return 0;
     else if(!strcmp(Opcode,"CJNE"))
@@ -61,6 +72,6 @@ int get_Number_of_Operands(char* Opcode){
         return 2;
 }
 
-char* Read_Instruction(FILE *code,char* inst){
+char* Read_Instruction(FILE *code,char* inst){ //Reads the instruction in the current line pointed by the File pointer
     return fgets(inst,26,code);  
 }
