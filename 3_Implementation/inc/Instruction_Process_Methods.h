@@ -15,6 +15,7 @@
 #include "Instruction_DataTypes.h"
 #include<stdbool.h>
 
+char* inttohex(int Hex_Code);
 char* Read_Instruction(FILE *code,char* inst);
 void Read_Opcode(char inst[],char* Opcode);
 void Read_Operand(char inst[],char* Operand_1);

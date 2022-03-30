@@ -10,10 +10,42 @@
  */
 
 #include "Instruction_DataTypes.h"
-#include<stdio.h>
-#include<stdbool.h>
-#include<string.h>
+#include "Instruction_Process_Methods.h"
+#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+#include <stdlib.h>
 
+
+char nibble_to_hex(int temp){
+    char res;
+        switch ( temp ){
+            case 10:
+                res = 'A';break;
+            case 11:
+                res = 'B';break;
+            case 12:
+                res = 'C';break;
+            case 13:
+                res = 'D';break;
+            case 14:
+                res = 'E';break;
+            case 15:
+                res = 'F';break;
+            default:
+                res = (char) (temp + '0');
+        }
+    return res;
+}
+
+char* inttohex(int Hex_Code){
+    char *res = (char*) calloc(3, sizeof(char));
+    *(res+1) = nibble_to_hex( (int) ((Hex_Code) & (0x0F)) );
+    *res = nibble_to_hex( (int)( ( (Hex_Code) & (0xF0) ) >> 4 ));
+    *(res+2) = '\0';
+    printf("%s\n",res);
+    return res;
+}
 void shiftStringLeft(char inst[],int i){ //Shift String input given in inst by i char
     int k=0;
     while( (i+k) < strlen(inst) ){
@@ -42,7 +74,7 @@ void Read_Opcode(char inst[],char* Opcode){ //Reads the Opcode of a Instruction
 }
 void Read_Operand(char inst[],char* Operand_1){ //Reads Next Operand of an Instruction
     char *c;
-    c=strchr(inst,',');
+    c = strchr( inst, ',' );
     if( c == NULL ){
         Remove_Whitespaces( inst );
         strcpy( Operand_1, inst );

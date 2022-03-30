@@ -67,8 +67,8 @@ int process_Hex_Code_0(char Operand_0[],char Operand_1[],char Operand_2[],int k)
     
     //MOV INSTRUCTION PROCESSING
     if( strcmp(Instruction_List[k].OPCODE, "MOV" ) == 0){  
-        if(Operand_1[0]=='#'){
-            if(strcmp(Operand_0 , "DPTR")==0){
+        if( Operand_1[0] == '#' ){
+            if( strcmp(Operand_0 , "DPTR") == 0){
                 hex_Code=0x90;
             }
             else{      
@@ -311,7 +311,7 @@ int process_Hex_Code_0(char Operand_0[],char Operand_1[],char Operand_2[],int k)
 
 
 char* process_Hex_Code_1(char Operand_0[],char Operand_1[],char Operand_2[],int k){ //Process the second hex code
-    char *hex_Code_1=(char*)malloc(2*sizeof(char)); //Allocate memory for return string
+    char *hex_Code_1 = (char*)malloc(2*sizeof(char)); //Allocate memory for return string
     char Op[6];
     if( k == 1 || k == 32 || k == 33 || k == 34 || ( k >= 7 && k <= 9 ) || ( k >= 38 && k <=39 )){ //For MOV, ORL, XRL, ANL, XCH, XCHD, ADD, ADDC, SUBB Instruction
         if( strcmp(Operand_0,"DPTR") == 0 ) //DPTR 
@@ -336,9 +336,15 @@ char* process_Hex_Code_1(char Operand_0[],char Operand_1[],char Operand_2[],int 
             hex_Code_1[1]=(char)Op[2];
             }
         else{
-            hex_Code_1[0]=(char)Op[0];
-            hex_Code_1[1]=(char)Op[1];
+            if(strlen(Op) == 1){
+                hex_Code_1[0] = '0';
+                hex_Code_1[1] = (char)Op[0];
             }
+            else{
+                hex_Code_1[0]=(char)Op[0];
+                hex_Code_1[1]=(char)Op[1];
+            }
+        }
     }
     else if ( k == 5 || k == 6 || k == 40 || k == 41 || ( k >= 27 && k <= 31 ) || ( k >= 35 && k <= 37 ) ){ //For INC, DEC, PUSH, POP, LOGICAL Instruction
         if(Operand_0[0]=='#'){//Check if it's a immidiate value or not
@@ -403,7 +409,7 @@ char* process_Hex_Code_2(char Operand_0[],char Operand_1[],char Operand_2[],int 
             }
         }
 
-        else if ( strcmp(Operand_0,"A")==0 || Operand_0[0]=='@' || Operand_0[0]=='R' || strcmp(Operand_1,"A")==0 || Operand_1[0]=='@' || Operand_1[0]=='R' ) {
+        else if ( strcmp(Operand_0,"A")==0 || strcmp(Operand_0,"C")==0 || Operand_0[0]=='@' || Operand_0[0]=='R' || strcmp(Operand_1,"A")==0 || Operand_1[0]=='@' || Operand_1[0]=='R' || strcmp(Operand_1,"C")==0 ) {
             hex_Code[0]='0';
             hex_Code[1]='0';
         }
