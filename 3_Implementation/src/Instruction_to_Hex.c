@@ -8,11 +8,7 @@
  * @copyright Copyright (c) 2022
  * 
  */
-#include <string.h>
-#include <stdlib.h>
 #include "Instruction_Set.h"
-#include <stdio.h>
-
 
 int match_Opcode(char Opcode[]){ //Matches the Opcode in the Instruction to that in the Instruction_Set.h file
     int k=0;

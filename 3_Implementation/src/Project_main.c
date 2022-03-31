@@ -8,9 +8,6 @@
  * @copyright Copyright (c) 2022
  * 
  */
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
 #include "Instruction_Process_Methods.h"
 
 #define Assembly_Code_Path "./test/test_code.asm"

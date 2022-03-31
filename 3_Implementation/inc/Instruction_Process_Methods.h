@@ -11,9 +11,11 @@
 #ifndef INSTRUCTION_PROCESS_H
 #define INSTRUCTION_PROCESS_H
 
-#include<stdio.h>
 #include "Instruction_DataTypes.h"
-#include<stdbool.h>
+#include <stdbool.h>
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 char* inttohex(int Hex_Code);
 char* Read_Instruction(FILE *code,char* inst);
