@@ -29,16 +29,16 @@ int main(){
 
    while(!feof(code)){//While not  at the end of file, execute the following codes
 
-        ins=calloc(30,sizeof(char)); //Allocate memory for temporary variable ins
-        ins=Read_Instruction(code,ins); //Read the Instruction in the line pointed by file pointer
+        ins = calloc(30,sizeof(char)); //Allocate memory for temporary variable ins
+        ins = Read_Instruction(code,ins); //Read the Instruction in the line pointed by file pointer
 
         char inst[strlen(ins)]; //create a string of length of the instruction
 
         strcpy(inst,ins); //Copy the contents from temp variable to inst
 
-        if(!feof(code))
+        if(!feof(code)){ //if we aren't at the end of file
             inst[strlen(inst)-1]='\0';//add end of line at the end
-
+        }
         free(ins); //free temporary variable
 
         int Hex_Code_Operand;

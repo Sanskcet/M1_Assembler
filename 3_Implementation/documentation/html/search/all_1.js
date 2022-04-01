@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['project_5fmain_2ec_0',['Project_main.c',['../_project__main_8c.html',1,'']]]
+  ['get_5fnumber_5fof_5foperands_1',['get_Number_of_Operands',['../_instruction___process___methods_8c.html#ad5c2458464b2605c633491fac8707834',1,'Instruction_Process_Methods.c']]]
 ];

@@ -9,6 +9,11 @@ SRC = src/Instruction_Process_Methods.c\
 src/Instruction_to_Hex.c\
 src/Project_main.c\
 
+TEST_SRC = src/Instruction_Process_Methods.c\
+src/Instruction_to_Hex.c\
+test/Unit_test_Assembler.c\
+unity/unity.c\
+
 TEST_OUTPUT = $(BUILD)/Test_$(PROJECT_NAME).out
 
 # All include folders with header files
@@ -37,14 +42,22 @@ all: $(SRC) $(BUILD)
 run:$(PROJECT_NAME)
 	./$(PROJECT_OUTPUT).out
 
+# Build and Run Unity Tests
+test: $(BUILD)
+	gcc $(TEST_SRC) $(INC) -o $(TEST_OUTPUT) $(INCLUDE_LIBS)
+	./$(TEST_OUTPUT)
+
 # Document the code using Doxygen
 doc:
 	make -C ./documentation
 
 # Remove all the built files, invoke by `make clean`
 clean:
-	rm -rf $(BUILD) $(DOCUMENTATION_OUTPUT) *.gcda *.gcno *.gcov
+	rm -rf $(BUILD) output *.gcda *.gcno *.gcov
 
+clean_doc:
+	rm -rf $(DOCUMENTATION_OUTPUT)
+	
 # Create new build folder if not present
 $(BUILD):
 	mkdir build

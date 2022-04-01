@@ -1,42 +1,35 @@
-\doxysection{src/\+Instruction\+\_\+to\+\_\+\+Hex.c File Reference}
+\hypertarget{_instruction__to___hex_8c}{}\doxysection{src/\+Instruction\+\_\+to\+\_\+\+Hex.c File Reference}
 \label{_instruction__to___hex_8c}\index{src/Instruction\_to\_Hex.c@{src/Instruction\_to\_Hex.c}}
 
 
-Contains function definitions required to convert an \doxyref{Instruction}{p.}{struct_instruction} to the equivalent Hex Code.  
+Contains function definitions required to convert an Instruction to the equivalent Hex Code.  
 
 
-{\ttfamily \#include $<$string.\+h$>$}\newline
-{\ttfamily \#include $<$stdlib.\+h$>$}\newline
 {\ttfamily \#include \char`\"{}Instruction\+\_\+\+Set.\+h\char`\"{}}\newline
-{\ttfamily \#include $<$stdio.\+h$>$}\newline
+Include dependency graph for Instruction\+\_\+to\+\_\+\+Hex.\+c\+:
+% FIG 0
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\label{_instruction__to___hex_8c_a3908f3050919ebc6be2f8f106918c32a}} 
-int {\bfseries match\+\_\+\+Opcode} (char Opcode[$\,$])
+int \mbox{\hyperlink{_instruction__to___hex_8c_a3908f3050919ebc6be2f8f106918c32a}{match\+\_\+\+Opcode}} (char Opcode\mbox{[}$\,$\mbox{]})
 \item 
-\mbox{\label{_instruction__to___hex_8c_a0785cd929db0b54657303fb54ec81fcc}} 
-int {\bfseries Modifiers} (char Operands[$\,$])
+int \mbox{\hyperlink{_instruction__to___hex_8c_a0785cd929db0b54657303fb54ec81fcc}{Modifiers}} (char Operands\mbox{[}$\,$\mbox{]})
 \item 
-\mbox{\label{_instruction__to___hex_8c_a06d14af9f970f29b478459fd9a3046df}} 
-int {\bfseries parse\+\_\+\+Modifier} (int hex\+\_\+\+Code, char Operand[$\,$])
+int \mbox{\hyperlink{_instruction__to___hex_8c_a06d14af9f970f29b478459fd9a3046df}{parse\+\_\+\+Modifier}} (int hex\+\_\+\+Code, char Operand\mbox{[}$\,$\mbox{]})
 \item 
-\mbox{\label{_instruction__to___hex_8c_a1da72cf6d229ee389e9bcc24240b58e8}} 
-int {\bfseries process\+\_\+\+Hex\+\_\+\+Code\+\_\+0} (char Operand\+\_\+0[$\,$], char Operand\+\_\+1[$\,$], char Operand\+\_\+2[$\,$], int k)
+int \mbox{\hyperlink{_instruction__to___hex_8c_a1da72cf6d229ee389e9bcc24240b58e8}{process\+\_\+\+Hex\+\_\+\+Code\+\_\+0}} (char Operand\+\_\+0\mbox{[}$\,$\mbox{]}, char Operand\+\_\+1\mbox{[}$\,$\mbox{]}, char Operand\+\_\+2\mbox{[}$\,$\mbox{]}, int k)
 \item 
-\mbox{\label{_instruction__to___hex_8c_a4be6386b0b653b25307c4f304c4babbe}} 
-char $\ast$ {\bfseries process\+\_\+\+Hex\+\_\+\+Code\+\_\+1} (char Operand\+\_\+0[$\,$], char Operand\+\_\+1[$\,$], char Operand\+\_\+2[$\,$], int k)
+char $\ast$ \mbox{\hyperlink{_instruction__to___hex_8c_a4972ff9382e97eeb00570c2e1d38ad64}{process\+\_\+\+Hex\+\_\+\+Code\+\_\+1}} (char Operand\+\_\+0\mbox{[}$\,$\mbox{]}, char Operand\+\_\+1\mbox{[}$\,$\mbox{]}, char Operand\+\_\+2\mbox{[}$\,$\mbox{]}, int k)
 \item 
-\mbox{\label{_instruction__to___hex_8c_a532330b26e5508a59378ea04c997e252}} 
-char $\ast$ {\bfseries process\+\_\+\+Hex\+\_\+\+Code\+\_\+2} (char Operand\+\_\+0[$\,$], char Operand\+\_\+1[$\,$], char Operand\+\_\+2[$\,$], int k, int Number\+\_\+of\+\_\+\+Operands)
+char $\ast$ \mbox{\hyperlink{_instruction__to___hex_8c_a11bf9d962dd92ed88654ccfb64be67f6}{process\+\_\+\+Hex\+\_\+\+Code\+\_\+2}} (char Operand\+\_\+0\mbox{[}$\,$\mbox{]}, char Operand\+\_\+1\mbox{[}$\,$\mbox{]}, char Operand\+\_\+2\mbox{[}$\,$\mbox{]}, int k, int Number\+\_\+of\+\_\+\+Operands)
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Contains function definitions required to convert an \doxyref{Instruction}{p.}{struct_instruction} to the equivalent Hex Code. 
+Contains function definitions required to convert an Instruction to the equivalent Hex Code. 
 
 \begin{DoxyAuthor}{Author}
-Sanjeeve R ({\texttt{ 18euee122@skcet.\+ac.\+in}}) 
+Sanjeeve R (\href{mailto:18euee122@skcet.ac.in}{\texttt{ 18euee122@skcet.\+ac.\+in}}) 
 \end{DoxyAuthor}
 \begin{DoxyVersion}{Version}
 0.\+1 
@@ -47,3 +40,42 @@ Sanjeeve R ({\texttt{ 18euee122@skcet.\+ac.\+in}})
 \begin{DoxyCopyright}{Copyright}
 Copyright (c) 2022 
 \end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_instruction__to___hex_8c_a3908f3050919ebc6be2f8f106918c32a}\label{_instruction__to___hex_8c_a3908f3050919ebc6be2f8f106918c32a}} 
+\index{Instruction\_to\_Hex.c@{Instruction\_to\_Hex.c}!match\_Opcode@{match\_Opcode}}
+\index{match\_Opcode@{match\_Opcode}!Instruction\_to\_Hex.c@{Instruction\_to\_Hex.c}}
+\doxysubsubsection{\texorpdfstring{match\_Opcode()}{match\_Opcode()}}
+{\footnotesize\ttfamily int match\+\_\+\+Opcode (\begin{DoxyParamCaption}\item[{char}]{Opcode\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_instruction__to___hex_8c_a0785cd929db0b54657303fb54ec81fcc}\label{_instruction__to___hex_8c_a0785cd929db0b54657303fb54ec81fcc}} 
+\index{Instruction\_to\_Hex.c@{Instruction\_to\_Hex.c}!Modifiers@{Modifiers}}
+\index{Modifiers@{Modifiers}!Instruction\_to\_Hex.c@{Instruction\_to\_Hex.c}}
+\doxysubsubsection{\texorpdfstring{Modifiers()}{Modifiers()}}
+{\footnotesize\ttfamily int Modifiers (\begin{DoxyParamCaption}\item[{char}]{Operands\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_instruction__to___hex_8c_a06d14af9f970f29b478459fd9a3046df}\label{_instruction__to___hex_8c_a06d14af9f970f29b478459fd9a3046df}} 
+\index{Instruction\_to\_Hex.c@{Instruction\_to\_Hex.c}!parse\_Modifier@{parse\_Modifier}}
+\index{parse\_Modifier@{parse\_Modifier}!Instruction\_to\_Hex.c@{Instruction\_to\_Hex.c}}
+\doxysubsubsection{\texorpdfstring{parse\_Modifier()}{parse\_Modifier()}}
+{\footnotesize\ttfamily int parse\+\_\+\+Modifier (\begin{DoxyParamCaption}\item[{int}]{hex\+\_\+\+Code,  }\item[{char}]{Operand\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_instruction__to___hex_8c_a1da72cf6d229ee389e9bcc24240b58e8}\label{_instruction__to___hex_8c_a1da72cf6d229ee389e9bcc24240b58e8}} 
+\index{Instruction\_to\_Hex.c@{Instruction\_to\_Hex.c}!process\_Hex\_Code\_0@{process\_Hex\_Code\_0}}
+\index{process\_Hex\_Code\_0@{process\_Hex\_Code\_0}!Instruction\_to\_Hex.c@{Instruction\_to\_Hex.c}}
+\doxysubsubsection{\texorpdfstring{process\_Hex\_Code\_0()}{process\_Hex\_Code\_0()}}
+{\footnotesize\ttfamily int process\+\_\+\+Hex\+\_\+\+Code\+\_\+0 (\begin{DoxyParamCaption}\item[{char}]{Operand\+\_\+0\mbox{[}$\,$\mbox{]},  }\item[{char}]{Operand\+\_\+1\mbox{[}$\,$\mbox{]},  }\item[{char}]{Operand\+\_\+2\mbox{[}$\,$\mbox{]},  }\item[{int}]{k }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_instruction__to___hex_8c_a4972ff9382e97eeb00570c2e1d38ad64}\label{_instruction__to___hex_8c_a4972ff9382e97eeb00570c2e1d38ad64}} 
+\index{Instruction\_to\_Hex.c@{Instruction\_to\_Hex.c}!process\_Hex\_Code\_1@{process\_Hex\_Code\_1}}
+\index{process\_Hex\_Code\_1@{process\_Hex\_Code\_1}!Instruction\_to\_Hex.c@{Instruction\_to\_Hex.c}}
+\doxysubsubsection{\texorpdfstring{process\_Hex\_Code\_1()}{process\_Hex\_Code\_1()}}
+{\footnotesize\ttfamily char$\ast$ process\+\_\+\+Hex\+\_\+\+Code\+\_\+1 (\begin{DoxyParamCaption}\item[{char}]{Operand\+\_\+0\mbox{[}$\,$\mbox{]},  }\item[{char}]{Operand\+\_\+1\mbox{[}$\,$\mbox{]},  }\item[{char}]{Operand\+\_\+2\mbox{[}$\,$\mbox{]},  }\item[{int}]{k }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{_instruction__to___hex_8c_a11bf9d962dd92ed88654ccfb64be67f6}\label{_instruction__to___hex_8c_a11bf9d962dd92ed88654ccfb64be67f6}} 
+\index{Instruction\_to\_Hex.c@{Instruction\_to\_Hex.c}!process\_Hex\_Code\_2@{process\_Hex\_Code\_2}}
+\index{process\_Hex\_Code\_2@{process\_Hex\_Code\_2}!Instruction\_to\_Hex.c@{Instruction\_to\_Hex.c}}
+\doxysubsubsection{\texorpdfstring{process\_Hex\_Code\_2()}{process\_Hex\_Code\_2()}}
+{\footnotesize\ttfamily char$\ast$ process\+\_\+\+Hex\+\_\+\+Code\+\_\+2 (\begin{DoxyParamCaption}\item[{char}]{Operand\+\_\+0\mbox{[}$\,$\mbox{]},  }\item[{char}]{Operand\+\_\+1\mbox{[}$\,$\mbox{]},  }\item[{char}]{Operand\+\_\+2\mbox{[}$\,$\mbox{]},  }\item[{int}]{k,  }\item[{int}]{Number\+\_\+of\+\_\+\+Operands }\end{DoxyParamCaption})}
+

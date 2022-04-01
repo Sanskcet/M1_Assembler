@@ -1,0 +1,78 @@
+.TH "src/Instruction_to_Hex.c" 3 "Fri Apr 1 2022" "Version Alpha" "M1_Assembler" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/Instruction_to_Hex.c \- Contains function definitions required to convert an Instruction to the equivalent Hex Code\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'Instruction_Set\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBmatch_Opcode\fP (char Opcode[])"
+.br
+.ti -1c
+.RI "int \fBModifiers\fP (char Operands[])"
+.br
+.ti -1c
+.RI "int \fBparse_Modifier\fP (int hex_Code, char Operand[])"
+.br
+.ti -1c
+.RI "int \fBprocess_Hex_Code_0\fP (char Operand_0[], char Operand_1[], char Operand_2[], int k)"
+.br
+.ti -1c
+.RI "char * \fBprocess_Hex_Code_1\fP (char Operand_0[], char Operand_1[], char Operand_2[], int k)"
+.br
+.ti -1c
+.RI "char * \fBprocess_Hex_Code_2\fP (char Operand_0[], char Operand_1[], char Operand_2[], int k, int Number_of_Operands)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Contains function definitions required to convert an Instruction to the equivalent Hex Code\&. 
+
+
+.PP
+\fBAuthor\fP
+.RS 4
+Sanjeeve R (18euee122@skcet.ac.in) 
+.RE
+.PP
+\fBVersion\fP
+.RS 4
+0\&.1 
+.RE
+.PP
+\fBDate\fP
+.RS 4
+2022-03-30
+.RE
+.PP
+\fBCopyright\fP
+.RS 4
+Copyright (c) 2022 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "int match_Opcode (char Opcode[])"
+
+.SS "int Modifiers (char Operands[])"
+
+.SS "int parse_Modifier (int hex_Code, char Operand[])"
+
+.SS "int process_Hex_Code_0 (char Operand_0[], char Operand_1[], char Operand_2[], int k)"
+
+.SS "char* process_Hex_Code_1 (char Operand_0[], char Operand_1[], char Operand_2[], int k)"
+
+.SS "char* process_Hex_Code_2 (char Operand_0[], char Operand_1[], char Operand_2[], int k, int Number_of_Operands)"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for M1_Assembler from the source code\&.

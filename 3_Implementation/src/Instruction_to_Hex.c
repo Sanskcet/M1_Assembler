@@ -51,26 +51,25 @@ int Modifiers(char Operands[]){ //Preset Modifiers for the Instruction
     else
         return 0;
 }
-int parse_Modifier(int hex_Code,char Operand[]){ //Incorporate the Modifier with the hex code
+int parse_Modifier(int hex_Code, char Operand[]){ //Incorporate the Modifier with the hex code
     int temp;
-    if(temp=Modifiers(Operand)){
-        hex_Code=hex_Code/16;
-        hex_Code=hex_Code*16 + temp;
+    if( temp = Modifiers(Operand) ){
+        hex_Code = hex_Code/16;
+        hex_Code = hex_Code*16 + temp;
     }
 }
 int process_Hex_Code_0(char Operand_0[],char Operand_1[],char Operand_2[],int k){ //Process the first hex code
     int hex_Code=0;
-    
+    switch ( k ){
     //MOV INSTRUCTION PROCESSING
-    if( strcmp(Instruction_List[k].OPCODE, "MOV" ) == 0){  
+    case 1:
         if( Operand_1[0] == '#' ){
             if( strcmp(Operand_0 , "DPTR") == 0){
-                hex_Code=0x90;
+                hex_Code = 0x90;
             }
             else{      
-                   
-                hex_Code=Instruction_List[k].hex_value;
-                hex_Code=parse_Modifier(hex_Code,Operand_0);
+                hex_Code = Instruction_List[k].hex_value;
+                hex_Code = parse_Modifier(hex_Code,Operand_0);
             }
         }
 
@@ -105,40 +104,66 @@ int process_Hex_Code_0(char Operand_0[],char Operand_1[],char Operand_2[],int k)
                 hex_Code = 0xF5;
                 hex_Code = parse_Modifier(hex_Code,Operand_0);
         }
-    }
+    break;
+    
+    //MOVX INSTRUCTION
+    case 2:
+        if( strcmp( Operand_0, "A") == 0){
+            if ( strcmp( Operand_1, "@DPTR") == 0 ){
+                hex_Code = 0xE0;
+            }
+            else if ( strcmp( Operand_1, "@R0") == 0 ){
+                hex_Code = 0xE2;
+            }
+            else if ( strcmp( Operand_1, "@R1") == 0 ){
+                hex_Code = 0xE3;
+            }
+        }
+        else{
+            if ( strcmp( Operand_0, "@DPTR") == 0 ){
+                hex_Code = 0xF0;
+            }
+            else if ( strcmp( Operand_0, "@R0") == 0 ){
+                hex_Code = 0xF2;
+            }
+            else if ( strcmp( Operand_0, "@R1") == 0 ){
+                hex_Code = 0xF3;
+            }
+        }
+    break;
 
     //ADD INSTRUCTION
-    else if(strcmp(Instruction_List[k].OPCODE, "ADD" )==0){
+    case 7:
             hex_Code = Instruction_List[k].hex_value;
             hex_Code = parse_Modifier(hex_Code,Operand_1);             
-    }
+    break;
 
     //ADDC INSTRUCTION
-    else if(strcmp(Instruction_List[k].OPCODE, "ADDC" )==0){
+    case 8:
             hex_Code = Instruction_List[k].hex_value;
             hex_Code = parse_Modifier(hex_Code,Operand_1);             
-    }
+    break;
 
     //SUBB INSTRUCTION
-    else if(strcmp(Instruction_List[k].OPCODE, "SUBB" )==0){
+    case 9:
             hex_Code = Instruction_List[k].hex_value;
             hex_Code = parse_Modifier(hex_Code,Operand_1);             
-    }
+    break;
 
     //EXCHANGE INSTRUCTION
-    else if(strcmp(Instruction_List[k].OPCODE, "XCH" )==0){
+    case 38:
             hex_Code = Instruction_List[k].hex_value;
             hex_Code = parse_Modifier(hex_Code,Operand_1);             
-    }
+    break;
 
     //EXCHANGE DIRECT INSTRUCTION
-    else if(strcmp(Instruction_List[k].OPCODE, "XCHD" )==0){
+    case 39:
             hex_Code = Instruction_List[k].hex_value;
             hex_Code = parse_Modifier(hex_Code,Operand_1);             
-    }
+    break;
 
     //INC INSTRUCTION
-    else if(strcmp(Instruction_List[k].OPCODE, "INC" )==0){
+    case 5:
         if(strcmp(Operand_0 , "DPTR")==0){
                 hex_Code=0xA3;
         }   
@@ -146,18 +171,17 @@ int process_Hex_Code_0(char Operand_0[],char Operand_1[],char Operand_2[],int k)
             hex_Code = Instruction_List[k].hex_value;
             hex_Code = parse_Modifier(hex_Code,Operand_0);             
         }
-    }
+    break;
 
     //DEC INSTRUCTION
-    else if(strcmp(Instruction_List[k].OPCODE, "DEC" )==0){
+    case 6:
 
         hex_Code = Instruction_List[k].hex_value;
         hex_Code = parse_Modifier(hex_Code,Operand_0);             
-
-    }
+    break;
 
     //COMPARE WITH JUMP INSTRUCTION
-    else if(strcmp(Instruction_List[k].OPCODE, "CJNE" )==0){
+    case 10:
 
         if( strcmp(Operand_0,"A") == 0 && strchr(Operand_1,'H') ){
 
@@ -171,66 +195,68 @@ int process_Hex_Code_0(char Operand_0[],char Operand_1[],char Operand_2[],int k)
 
         }
 
-    }
+    break;
 
     //DJNZ INSTRUCTION
-    else if(strcmp(Instruction_List[k].OPCODE, "DJNZ" )==0){
+    case 11:
 
         hex_Code = Instruction_List[k].hex_value;
         hex_Code = parse_Modifier(hex_Code,Operand_0);             
 
-    }
+    break;
 
     //JBC INSTRUCTION
-    else if(strcmp(Instruction_List[k].OPCODE, "JBC" )==0) hex_Code = Instruction_List[k].hex_value;
+    case 15: hex_Code = Instruction_List[k].hex_value; break;
 
     //JB INSTRUCTION
-    else if(strcmp(Instruction_List[k].OPCODE, "JB" )==0) hex_Code = Instruction_List[k].hex_value;
+    case 16: hex_Code = Instruction_List[k].hex_value; break;
 
     //JNB INSTRUCTION
-    else if(strcmp(Instruction_List[k].OPCODE, "JNB" )==0) hex_Code = Instruction_List[k].hex_value;
+    case 17: hex_Code = Instruction_List[k].hex_value; break;
 
     //JC INSTRUCTION
-    else if(strcmp(Instruction_List[k].OPCODE, "JC" )==0) hex_Code = Instruction_List[k].hex_value;    
+    case 18: hex_Code = Instruction_List[k].hex_value; break;
 
     //JNC INSTRUCTION
-    else if(strcmp(Instruction_List[k].OPCODE, "JNC" )==0) hex_Code = Instruction_List[k].hex_value;
+    case 19: hex_Code = Instruction_List[k].hex_value; break;
 
     //JZ INSTRUCTION
-    else if(strcmp(Instruction_List[k].OPCODE, "JZ" )==0) hex_Code = Instruction_List[k].hex_value;
+    case 20: hex_Code = Instruction_List[k].hex_value; break;
 
     //JNZ INSTRUCTION
-    else if(strcmp(Instruction_List[k].OPCODE, "JNZ" )==0) hex_Code = Instruction_List[k].hex_value;
+    case 21: hex_Code = Instruction_List[k].hex_value; break;
 
     //JMP INSTRUCTION
-    else if(strcmp(Instruction_List[k].OPCODE, "JMP" )==0) hex_Code = Instruction_List[k].hex_value;    
+    case 22: hex_Code = Instruction_List[k].hex_value; break;
 
     //LCALL 
-    else if(strcmp(Instruction_List[k].OPCODE, "LCALL" )==0) hex_Code = Instruction_List[k].hex_value;
+    case 24: hex_Code = Instruction_List[k].hex_value; break;
 
     //RET INSTRUCTION
-    else if(strcmp(Instruction_List[k].OPCODE, "RET" )==0) hex_Code = Instruction_List[k].hex_value;
+    case 25: hex_Code = Instruction_List[k].hex_value; break;
 
     //RETI INSTRUCTION
-    else if(strcmp(Instruction_List[k].OPCODE, "RETI" )==0) hex_Code = Instruction_List[k].hex_value;
+    case 26: hex_Code = Instruction_List[k].hex_value; break;
 
     //RL INSTRUCTION
-    else if(strcmp(Instruction_List[k].OPCODE, "RL" )==0) hex_Code = Instruction_List[k].hex_value;
+    case 29: hex_Code = Instruction_List[k].hex_value; break;
 
     //RLC INSTRUCTION
-    else if(strcmp(Instruction_List[k].OPCODE, "RLC" )==0) hex_Code = Instruction_List[k].hex_value;    
+    case 30: hex_Code = Instruction_List[k].hex_value; break;
 
     //RR 
-    else if(strcmp(Instruction_List[k].OPCODE, "RR" )==0) hex_Code = Instruction_List[k].hex_value;
+    case 27: hex_Code = Instruction_List[k].hex_value; break;
 
     //RRC INSTRUCTION
-    else if(strcmp(Instruction_List[k].OPCODE, "RRC" )==0) hex_Code = Instruction_List[k].hex_value;
+    case 28: hex_Code = Instruction_List[k].hex_value; break;
 
     //SWAP INSTRUCTION
-    else if(strcmp(Instruction_List[k].OPCODE, "SWAP" )==0) hex_Code = Instruction_List[k].hex_value;
+    case 31: hex_Code = Instruction_List[k].hex_value; break;
    
     //LOGICAL INSTRUCTION
-    else if( strcmp( Instruction_List[k].OPCODE, "ANL") || strcmp( Instruction_List[k].OPCODE, "ORL") || strcmp( Instruction_List[k].OPCODE, "XRL") ){
+    case 32:
+    case 33:
+    case 34:
         hex_Code=Instruction_List[k].hex_value;
         if ( Operand_1[0] == '#' && strchr(Operand_0, 'H')){
             
@@ -245,38 +271,38 @@ int process_Hex_Code_0(char Operand_0[],char Operand_1[],char Operand_2[],int k)
         else {
             hex_Code = parse_Modifier(hex_Code,Operand_0);
         }
-    }
-
+    break;
+    
     //NOP INSTRUCTION
-    else if(strcmp(Instruction_List[k].OPCODE, "NOP" )==0) hex_Code = Instruction_List[k].hex_value;
+    case 4: hex_Code = Instruction_List[k].hex_value; break;
     
     //MUL INSTRUCTION
-    else if(strcmp(Instruction_List[k].OPCODE, "MUL" )==0) hex_Code = Instruction_List[k].hex_value;
+    case 42: hex_Code = Instruction_List[k].hex_value; break;
 
     //DIV INSTRUCTION
-    else if(strcmp(Instruction_List[k].OPCODE, "DIV" )==0) hex_Code = Instruction_List[k].hex_value;
+    case 43: hex_Code = Instruction_List[k].hex_value; break;
 
     //DA INSTRUCTION
-    else if(strcmp(Instruction_List[k].OPCODE, "DA" )==0) hex_Code = Instruction_List[k].hex_value;
+    case 44: hex_Code = Instruction_List[k].hex_value; break;
 
     //PUSH INSTRUCTION
-    else if(strcmp(Instruction_List[k].OPCODE, "PUSH" )==0) hex_Code = Instruction_List[k].hex_value;
+    case 40: hex_Code = Instruction_List[k].hex_value; break;
 
     //POP INSTRUCTION
-    else if(strcmp(Instruction_List[k].OPCODE, "POP" )==0) hex_Code = Instruction_List[k].hex_value;
+    case 41: hex_Code = Instruction_List[k].hex_value; break;
 
     //SETB INSTRUCTION
-    else if(strcmp(Instruction_List[k].OPCODE, "SETB" ) == 0){
+    case 37:
         if ( strcmp( Operand_0, "C") == 0 ) {
             hex_Code = 0xD3;
         }
         else { 
             hex_Code = 0xD2;
         }
-    }  
+    break;
 
     //CLR INSTRUCTION
-    else if(strcmp(Instruction_List[k].OPCODE, "CLR" ) == 0){
+    case 36:
         if ( strcmp( Operand_0, "C") == 0 ) {
             hex_Code = 0xC3;
         }
@@ -286,10 +312,10 @@ int process_Hex_Code_0(char Operand_0[],char Operand_1[],char Operand_2[],int k)
         else { 
             hex_Code = 0xC2;
         }
-    }
+    break;
 
     //CPL INSTRUCTION
-    else if(strcmp(Instruction_List[k].OPCODE, "CPL" ) == 0){
+    case 35: 
         if ( strcmp( Operand_0, "C") == 0 ) {
             hex_Code = 0xB3;
         }
@@ -299,8 +325,8 @@ int process_Hex_Code_0(char Operand_0[],char Operand_1[],char Operand_2[],int k)
         else { 
             hex_Code = 0xB2;
         }
+    break;
     }
-
     return hex_Code;
 }
 

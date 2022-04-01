@@ -1,0 +1,98 @@
+.TH "src/Instruction_Process_Methods.c" 3 "Fri Apr 1 2022" "Version Alpha" "M1_Assembler" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/Instruction_Process_Methods.c \- Contains function definitions for processing the instructions\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'Instruction_DataTypes\&.h'\fP
+.br
+\fC#include 'Instruction_Process_Methods\&.h'\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <stdbool\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "char \fBnibble_to_hex\fP (int temp)"
+.br
+.ti -1c
+.RI "char * \fBinttohex\fP (int Hex_Code)"
+.br
+.ti -1c
+.RI "void \fBshiftStringLeft\fP (char inst[], int i)"
+.br
+.ti -1c
+.RI "void \fBRemove_Leading_Whitespaces\fP (char inst[])"
+.br
+.ti -1c
+.RI "void \fBRead_Opcode\fP (char inst[], char *Opcode)"
+.br
+.ti -1c
+.RI "void \fBRead_Operand\fP (char inst[], char *Operand_1)"
+.br
+.ti -1c
+.RI "int \fBget_Number_of_Operands\fP (char *Opcode)"
+.br
+.ti -1c
+.RI "char * \fBRead_Instruction\fP (FILE *code, char *inst)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Contains function definitions for processing the instructions\&. 
+
+
+.PP
+\fBAuthor\fP
+.RS 4
+Sanjeeve R (18euee122@skcet.ac.in) 
+.RE
+.PP
+\fBVersion\fP
+.RS 4
+0\&.1 
+.RE
+.PP
+\fBDate\fP
+.RS 4
+2022-03-30
+.RE
+.PP
+\fBCopyright\fP
+.RS 4
+Copyright (c) 2022 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "int get_Number_of_Operands (char * Opcode)"
+
+.SS "char* inttohex (int Hex_Code)"
+
+.SS "char nibble_to_hex (int temp)"
+
+.SS "char* Read_Instruction (FILE * code, char * inst)"
+
+.SS "void Read_Opcode (char inst[], char * Opcode)"
+
+.SS "void Read_Operand (char inst[], char * Operand_1)"
+
+.SS "void Remove_Leading_Whitespaces (char inst[])"
+
+.SS "void shiftStringLeft (char inst[], int i)"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for M1_Assembler from the source code\&.
