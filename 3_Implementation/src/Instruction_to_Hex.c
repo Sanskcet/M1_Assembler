@@ -412,7 +412,7 @@ char* process_Hex_Code_1(char Operand_0[],char Operand_1[],char Operand_2[],int 
 
 char* process_Hex_Code_2(char Operand_0[],char Operand_1[],char Operand_2[],int k,int Number_of_Operands){ //Process third Hex Code
     char Op[6];
-    char *hex_Code=(char*)malloc(2*sizeof(char));
+    char *hex_Code=(char*)malloc(3*sizeof(char));
     if( Number_of_Operands == 2 ){ //Check if Number of Operands in the instruction is 2
         if( strcmp( Operand_0, "DPTR" ) == 0 ){
             strcpy( Op, Operand_1 ); 

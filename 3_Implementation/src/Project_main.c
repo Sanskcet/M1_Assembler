@@ -50,7 +50,7 @@ int main(){
 
         int Hex_Code_Operand;
         char Hex_Code_1[3] = "", Hex_Code_2[3] = "";
-        char res[8];
+        char res[7];
         Opcode=calloc( 8, sizeof(char) );
         Read_Opcode( inst, Opcode );
         Number_of_Operands = get_Number_of_Operands(Opcode);
