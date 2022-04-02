@@ -13,8 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Install Valgrind and Run Memory Check
+    - name: Install Valgrind 
       run: |
         sudo apt-get update
         sudo apt-get install valgrind
-        make memcheck -C ./3_Implementation
