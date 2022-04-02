@@ -7,7 +7,7 @@ As I'm the only one collaborator, there are features still to be incorporated be
 
 Features
 -
-- Converts the mnemonics present in the code.asm to equvalent hexadecimal codes in hexout.
+- Converts the mnemonics present in the code.asm to equvalent hexadecimal codes in the ouput file hexout.hex .
 - Prints the mnemonics as well as their equivalent hexadecimal codes on the terminal. 
 
 Things to be done
@@ -15,3 +15,8 @@ Things to be done
 - Offset calculation for jump and call instructions.
 - Error identification and prompting.
 - I/O Port Bit-Control logic
+
+Future Works
+-
+- Develop the M1_Assembler project into a fully functional IDE with 'Interpret as you type' feature.
+- Incorporate simulation feauture.
