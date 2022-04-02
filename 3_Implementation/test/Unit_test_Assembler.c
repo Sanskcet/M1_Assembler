@@ -175,9 +175,10 @@ void test_process_Hex_Code_0(void){
             Read_Operand(inst_k[i],Operands[j]);// Read the next operand
             j++;
         }
+
         TEST_ASSERT_EQUAL( test_res[i], process_Hex_Code_0(Operands[0], Operands[1], Operands[2], match_Opcode(Opcode)));
         free(Opcode);
-        for(int j = 0;j < k; j++){ //Free memory allocated for Operands
+        for(j = 0;j < k; j++){ //Free memory allocated for Operands
             free(Operands[j]);
         }
     }  
@@ -208,7 +209,7 @@ void test_process_Hex_Code_1(void){
 
         TEST_ASSERT_EQUAL_STRING( test_res[i] , process_Hex_Code_1(Operands[0], Operands[1], Operands[2], match_Opcode(Opcode)));
         free(Opcode);
-        for(int j = 0;j < k; j++){ //Free memory allocated for Operands
+        for(j = 0;j < k; j++){ //Free memory allocated for Operands
             free(Operands[j]);
         }
     }  
@@ -239,7 +240,7 @@ void test_process_Hex_Code_2(void){
 
         TEST_ASSERT_EQUAL_STRING( test_res[i] , process_Hex_Code_2(Operands[0], Operands[1], Operands[2], match_Opcode(Opcode),j));
         free(Opcode);
-        for(int j = 0;j < k; j++){ //Free memory allocated for Operands
+        for(j = 0;j < k; j++){ //Free memory allocated for Operands
             free(Operands[j]);
         }
     }  

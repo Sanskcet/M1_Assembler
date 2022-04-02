@@ -1,7 +1,10 @@
 # Name of the project
 PROJECT_NAME = Assembler
 
-# Output directory
+#Hex file output directory
+OUTPUT = output
+
+# Build Output directory
 BUILD = build
 
 # All source code files
@@ -35,7 +38,7 @@ $(PROJECT_NAME):all
 # Run the target even if the matching name exists
 .PHONY: run clean test doc all
 
-all: $(SRC) $(BUILD)
+all: $(SRC) $(BUILD) $(OUTPUT)
 	gcc $(SRC) $(INC) -o $(PROJECT_OUTPUT).out
 
 # Call `make run` to run the application
@@ -51,6 +54,28 @@ test: $(BUILD)
 doc:
 	make -C ./documentation
 
+# Analyze the code using memceck staticceck code-coverage and sanitize_check
+analyze: test memcheck staticcheck coverage sanitize_check
+
+# Cppcheck
+staticcheck:
+	cppcheck --enable=all -iunity .
+
+# Memory Checks
+memcheck:
+	valgrind ./$(TEST_OUTPUT)
+
+# Sanitize Check
+sanitize_check:
+	gcc -fsanitize=address -fno-omit-frame-pointer $(TEST_SRC) $(INC) -o $(TEST_OUTPUT) $(INCLUDE_LIBS)
+	./$(TEST_OUTPUT)
+
+# Code Coverage
+coverage:$(TEST_SRC)
+	gcc -fprofile-arcs -ftest-coverage $(TEST_SRC) $(INC) -o $(TEST_OUTPUT) $(INCLUDE_LIBS)
+	./$(TEST_OUTPUT)
+	gcov -a Project_main.c
+
 # Remove all the built files, invoke by `make clean`
 clean:
 	rm -rf $(BUILD) output *.gcda *.gcno *.gcov
@@ -61,3 +86,6 @@ clean_doc:
 # Create new build folder if not present
 $(BUILD):
 	mkdir build
+
+$(OUTPUT):
+	mkdir output

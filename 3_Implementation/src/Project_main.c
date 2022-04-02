@@ -24,9 +24,16 @@ int main(){
     
     
     int i,k;
-    int NOT_EOF=1;
     
-
+    if( code == NULL ){
+        printf("Error: The input file doesn't exist\n");
+        exit(-1);
+    }
+    if( out == NULL ){
+        printf("Error: The output file can't be created as sufficient permissions aren't given\n");
+        exit(-1);
+    }
+    
    while(!feof(code)){//While not  at the end of file, execute the following codes
 
         ins = calloc(30,sizeof(char)); //Allocate memory for temporary variable ins
@@ -42,8 +49,8 @@ int main(){
         free(ins); //free temporary variable
 
         int Hex_Code_Operand;
-        char Hex_Code_1[3], Hex_Code_2[3];
-        char res[7];
+        char Hex_Code_1[3] = "", Hex_Code_2[3] = "";
+        char res[8];
         Opcode=calloc( 8, sizeof(char) );
         Read_Opcode( inst, Opcode );
         Number_of_Operands = get_Number_of_Operands(Opcode);

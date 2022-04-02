@@ -24,7 +24,7 @@ int match_Opcode(char Opcode[]){ //Matches the Opcode in the Instruction to that
 
 int Modifiers(char Operands[]){ //Preset Modifiers for the Instruction
     
-    if( (Operands[0]=='A') && (strlen(Operands)==1) )
+    if( strcmp (Operands, "A" ) == 0 )
         return 0x04;
     else if(strcmp(Operands , "@R0")==0)
         return 0x06;
@@ -52,14 +52,14 @@ int Modifiers(char Operands[]){ //Preset Modifiers for the Instruction
         return 0;
 }
 int parse_Modifier(int hex_Code, char Operand[]){ //Incorporate the Modifier with the hex code
-    int temp;
-    if( temp = Modifiers(Operand) ){
+    int temp= Modifiers(Operand);
+    if( temp > 0){
         hex_Code = hex_Code/16;
         hex_Code = hex_Code*16 + temp;
     }
 }
 int process_Hex_Code_0(char Operand_0[],char Operand_1[],char Operand_2[],int k){ //Process the first hex code
-    int hex_Code=0;
+    int hex_Code = 0;
     switch ( k ){
     //MOV INSTRUCTION PROCESSING
     case 1:
@@ -75,10 +75,10 @@ int process_Hex_Code_0(char Operand_0[],char Operand_1[],char Operand_2[],int k)
 
         //MOV BIT
         else if ( (strlen( Operand_0 ) == 1 || strlen( Operand_1 ) == 1 ) && ( Operand_0[0] == 'C' || Operand_1[0] == 'C') ){
-            if(Operand_0[0] == 'C'){
+            if( strcmp( Operand_0, "C") == 0){
                 hex_Code = 0xA2;
             }
-            else if( Operand_1[0] == 'C'){
+            else if( strcmp( Operand_1, "C") == 0 ){
                 hex_Code = 0x92;
             }
         }
