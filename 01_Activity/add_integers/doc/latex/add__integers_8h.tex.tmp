@@ -1,0 +1,86 @@
+\hypertarget{add__integers_8h}{}\doxysection{src/add\+\_\+integers.h File Reference}
+\label{add__integers_8h}\index{src/add\_integers.h@{src/add\_integers.h}}
+
+
+Header file with the required function -\/ sum.  
+
+
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+Include dependency graph for add\+\_\+integers.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{add__integers_8h_a36e47c5ee00152606e5ca0250a700774}\label{add__integers_8h_a36e47c5ee00152606e5ca0250a700774}} 
+enum {\bfseries func\+\_\+return\+\_\+type} \{ {\bfseries U\+N\+D\+E\+R\+F\+L\+OW} = -\/1, 
+{\bfseries S\+U\+C\+C\+E\+SS} = 0, 
+{\bfseries O\+V\+E\+R\+F\+L\+OW} = 1
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+func\+\_\+return\+\_\+type \mbox{\hyperlink{add__integers_8h_a05220f1a04c61614a514300b0919d29b}{sum}} (int arg1, int arg2, int $\ast$res)
+\begin{DoxyCompactList}\small\item\em The function sum which checks for Overflow and Undeflow errors and returns sum if no error is found. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file with the required function -\/ sum. 
+
+\begin{DoxyAuthor}{Author}
+your name (\href{mailto:you@domain.com}{\texttt{ you@domain.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/04-\/02
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{add__integers_8h_a05220f1a04c61614a514300b0919d29b}\label{add__integers_8h_a05220f1a04c61614a514300b0919d29b}} 
+\index{add\_integers.h@{add\_integers.h}!sum@{sum}}
+\index{sum@{sum}!add\_integers.h@{add\_integers.h}}
+\doxysubsubsection{\texorpdfstring{sum()}{sum()}}
+{\footnotesize\ttfamily func\+\_\+return\+\_\+type sum (\begin{DoxyParamCaption}\item[{int}]{arg1,  }\item[{int}]{arg2,  }\item[{int $\ast$}]{res }\end{DoxyParamCaption})}
+
+
+
+The function sum which checks for Overflow and Undeflow errors and returns sum if no error is found. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arg1} & \\
+\hline
+{\em arg2} & \\
+\hline
+{\em res} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+func\+\_\+return\+\_\+type
+\end{DoxyReturn}
+The function sum which checks for Overflow and Undeflow errors and returns sum if no error is found.
+
+
+\begin{DoxyParams}{Parameters}
+{\em arg1} & \\
+\hline
+{\em arg2} & \\
+\hline
+{\em res} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+func\+\_\+return\+\_\+type 
+\end{DoxyReturn}
+
+
+Definition at line 14 of file add\+\_\+integers.\+c.
+
