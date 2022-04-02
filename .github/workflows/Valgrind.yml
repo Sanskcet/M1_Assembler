@@ -13,8 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: apt install dependency
+    - name: Install Valgrind and Run Memory Check
       run: |
-        sudo apt-get -y install valgrind
-        sudo apt-get -y install libcunit1 libcunit1-doc libcunit1-dev
+        sudo apt-get install valgrind
         make memcheck -C ./3_Implementation
