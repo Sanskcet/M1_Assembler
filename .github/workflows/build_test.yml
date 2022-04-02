@@ -25,6 +25,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Build
-        run: cd ./3_Implementation
+        run: | 
+          cd ./3_Implementation
           make
 
