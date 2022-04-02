@@ -26,5 +26,6 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Unit_Test
         run: |  
+          sudo apt-get install libcunit1 libcunit1-doc libcunit1-dev
           cd ./3_Implementation
           make test
