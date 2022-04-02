@@ -17,7 +17,7 @@ This project "M1_Assembler" is simply a basic assembler for 8051 microprocessor.
 ## Folder Structure
 Folder             | Description
 -------------------| -----------------------------------------
- 01_Activity       | Files related to Activity given
+`01_Activity   `   | Files related to Activity given
 `1_Requirements`   | Documents detailing requirements and research
 `2_Architecture`         | Documents specifying design details
 `3_Implementation` | All code and documentation
