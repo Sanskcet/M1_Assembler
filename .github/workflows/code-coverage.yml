@@ -24,6 +24,8 @@ jobs:
     - name: Install gcov 
       run: sudo apt -y install gcovr
     - name: make test
-      run: make test -C ./3_Implementation
+      run: |
+        sudo apt-get install libcunit1 libcunit1-doc libcunit1-dev
+        make test -C ./3_Implementation
     - name: make coverage
       run: make -C 3_Implementation/ coverage
