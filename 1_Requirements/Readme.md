@@ -12,7 +12,7 @@ Objective
 
 Features
 -
-- Converts the mnemonics present in the code.asm to equvalent hexadecimal codes in the ouput file hexout.hex .
+- Converts the mnemonics present in the test_code.asm to equvalent hexadecimal codes in the ouput file hexout.hex .
 - Prints the mnemonics as well as their equivalent hexadecimal codes on the terminal. 
 
 Things to be done
