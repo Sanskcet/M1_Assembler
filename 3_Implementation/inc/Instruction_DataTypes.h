@@ -12,7 +12,11 @@
 #ifndef INSTRUCTION_DATATYPES_H
 #define INSTRUCTION_DATATYPES_H
 
-//New Data Type for Instruction
+
+/**
+ * @brief  New Data Type for Instructions with corresponding index, Opcode, Hex values, machine cylces and size of the instruction
+ * 
+ */
 struct Instruction{ 
     char OPCODE[6];
     int index;

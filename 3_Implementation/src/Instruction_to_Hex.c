@@ -10,6 +10,13 @@
  */
 #include "Instruction_Set.h"
 
+
+/**
+ * @brief Match the opcode with the index in Instruction Set Header file
+ * 
+ * @param Opcode 
+ * @return int 
+ */
 int match_Opcode(char Opcode[]){ //Matches the Opcode in the Instruction to that in the Instruction_Set.h file
     int k=0;
     while(strcmp(Opcode,Instruction_List[k].OPCODE)){
@@ -22,6 +29,12 @@ int match_Opcode(char Opcode[]){ //Matches the Opcode in the Instruction to that
     return k;
 }
 
+/**
+ * @brief Modifier for the Instruction. This induces code reuseability
+ * 
+ * @param Operands 
+ * @return int 
+ */
 int Modifiers(char Operands[]){ //Preset Modifiers for the Instruction
     
     if( strcmp (Operands, "A" ) == 0 )
@@ -51,6 +64,14 @@ int Modifiers(char Operands[]){ //Preset Modifiers for the Instruction
     else
         return 0;
 }
+
+/**
+ * @brief Incorporate the Modifier with the hex code
+ * 
+ * @param hex_Code 
+ * @param Operand 
+ * @return int 
+ */
 int parse_Modifier(int hex_Code, char Operand[]){ //Incorporate the Modifier with the hex code
     int temp= Modifiers(Operand);
     if( temp > 0){
@@ -58,6 +79,16 @@ int parse_Modifier(int hex_Code, char Operand[]){ //Incorporate the Modifier wit
         hex_Code = hex_Code*16 + temp;
     }
 }
+
+/**
+ * @brief Process the first hex code
+ * 
+ * @param Operand_0 
+ * @param Operand_1 
+ * @param Operand_2 
+ * @param k 
+ * @return int 
+ */
 int process_Hex_Code_0(char Operand_0[],char Operand_1[],char Operand_2[],int k){ //Process the first hex code
     int hex_Code = 0;
     switch ( k ){
@@ -331,7 +362,15 @@ int process_Hex_Code_0(char Operand_0[],char Operand_1[],char Operand_2[],int k)
 }
 
 
-
+/**
+ * @brief Process the second hex code
+ * 
+ * @param Operand_0 
+ * @param Operand_1 
+ * @param Operand_2 
+ * @param k 
+ * @return char* 
+ */
 char* process_Hex_Code_1(char Operand_0[],char Operand_1[],char Operand_2[],int k){ //Process the second hex code
     char *hex_Code_1 = (char*)malloc(2*sizeof(char)); //Allocate memory for return string
     char Op[6];
@@ -410,6 +449,16 @@ char* process_Hex_Code_1(char Operand_0[],char Operand_1[],char Operand_2[],int 
     return hex_Code_1;
 }
 
+/**
+ * @brief Process third Hex Code
+ * 
+ * @param Operand_0 
+ * @param Operand_1 
+ * @param Operand_2 
+ * @param k 
+ * @param Number_of_Operands 
+ * @return char* 
+ */
 char* process_Hex_Code_2(char Operand_0[],char Operand_1[],char Operand_2[],int k,int Number_of_Operands){ //Process third Hex Code
     char Op[6];
     char *hex_Code=(char*)malloc(3*sizeof(char));

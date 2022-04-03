@@ -1,7 +1,7 @@
 /**
  * @file Instruction_Set.h
  * @author Sanjeeve R (18euee122@skcet.ac.in)
- * @brief  Header file which has Instruction set of 8051
+ * @brief  Header file which has Instruction set of 8051 along with other parameters
  * @version 0.1
  * @date 2022-03-30
  * 

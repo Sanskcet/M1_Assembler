@@ -16,7 +16,12 @@
 #include <string.h>
 #include <stdlib.h>
 
-
+/**
+ * @brief  Function which converts a nibble to hexadecimal
+ * 
+ * @param temp 
+ * @return char 
+ */
 char nibble_to_hex(int temp){
     char res;
         switch ( temp ){
@@ -38,6 +43,12 @@ char nibble_to_hex(int temp){
     return res;
 }
 
+/**
+ * @brief  convert a instruction in int value to char value to print in the file.
+ * 
+ * @param Hex_Code 
+ * @return char* 
+ */
 char* inttohex(int Hex_Code){
     char *res = (char*) calloc(3, sizeof(char));
     *(res+1) = nibble_to_hex( (int) ((Hex_Code) & (0x0F)) );
@@ -45,6 +56,13 @@ char* inttohex(int Hex_Code){
     *(res+2) = '\0';
     return res;
 }
+
+/**
+ * @brief Shifts the string to left i times
+ * 
+ * @param inst 
+ * @param i 
+ */
 void shiftStringLeft(char inst[],int i){ //Shift String input given in inst by i char
     int k=0;
     while( (i+k) < strlen(inst) ){
@@ -54,6 +72,11 @@ void shiftStringLeft(char inst[],int i){ //Shift String input given in inst by i
     inst[k]='\0';
 }
 
+/**
+ * @brief Remove unwanted whitespaces in order to easily extract required information
+ * 
+ * @param inst 
+ */
 void Remove_Leading_Whitespaces(char inst[]){ //Remove white spaces in a string
     int i=0;
     while( inst[i] == ' ' ){
@@ -62,6 +85,13 @@ void Remove_Leading_Whitespaces(char inst[]){ //Remove white spaces in a string
     shiftStringLeft( inst, i );
     
 }
+
+/**
+ * @brief Read the opcode from inst string
+ * 
+ * @param inst 
+ * @param Opcode 
+ */
 void Read_Opcode(char inst[],char* Opcode){ //Reads the Opcode of a Instruction
     int i=0;
     while( inst[i] != ' ' ){
@@ -71,6 +101,13 @@ void Read_Opcode(char inst[],char* Opcode){ //Reads the Opcode of a Instruction
     shiftStringLeft(inst,i); 
     Remove_Leading_Whitespaces(inst);
 }
+
+/**
+ * @brief Read the next operand from inst string
+ * 
+ * @param inst 
+ * @param Operand_1 
+ */
 void Read_Operand(char inst[],char* Operand_1){ //Reads Next Operand of an Instruction
     char *c;
     c = strchr( inst, ',' );
@@ -84,9 +121,15 @@ void Read_Operand(char inst[],char* Operand_1){ //Reads Next Operand of an Instr
     Remove_Leading_Whitespaces( inst );
     shiftStringLeft( inst, c-inst+1 );
 }
-    
-
 }
+
+
+/**
+ * @brief Get the Number of Operands for a corresponding opcode
+ * 
+ * @param Opcode 
+ * @return int 
+ */
 
 int get_Number_of_Operands(char* Opcode){ //Returns the number of Operands in an Instruction
     if(!strcmp(Opcode,"RET") || !strcmp(Opcode,"RETI") || !strcmp(Opcode,"NOP"))
@@ -104,6 +147,13 @@ int get_Number_of_Operands(char* Opcode){ //Returns the number of Operands in an
         return 2;
 }
 
+/**
+ * @brief  Read the instruction from the file using file pointer *code and write it to the char pointer *inst
+ * 
+ * @param code 
+ * @param inst 
+ * @return char* 
+ */
 char* Read_Instruction(FILE *code,char* inst){ //Reads the instruction in the current line pointed by the File pointer
     return fgets(inst,26,code);  
 }

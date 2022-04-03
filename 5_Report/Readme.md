@@ -20,3 +20,4 @@ Future Works
 -
 - Develop the M1_Assembler project into a fully functional IDE with 'Interpret as you type' feature.
 - Incorporate simulation feauture.
+- Calculation of machine cycle and size of each and every instruction and return the time required for the program for execution.
