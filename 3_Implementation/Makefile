@@ -43,7 +43,7 @@ INCLUDE_LIBS = -lcunit
 PROJECT_OUTPUT = $(BUILD)/$(PROJECT_NAME).$(EXEC)
 
 # Document files
-DOCUMENTATION_OUTPUT = documentation/html
+DOCUMENTATION_OUTPUT = documentation/html documentation/rtf
 
 # Default target built
 $(PROJECT_NAME):all
@@ -67,6 +67,9 @@ test: $(BUILD)
 doc:
 	make -C ./documentation
 
+# Open the doxygen created Webpage in Browser
+doc_run:
+	make run -C ./documentation 
 # Analyze the code using memceck staticceck code-coverage and sanitize_check
 analyze: test memcheck staticcheck coverage sanitize_check
 
