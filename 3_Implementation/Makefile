@@ -1,6 +1,19 @@
 # Name of the project
 PROJECT_NAME = Assembler
 
+#Check Operating System
+ifdef OS
+   RM = del /q
+   FixPath = $(subst /,\,$1)
+   EXEC = exe
+else
+   ifeq ($(shell uname), Linux)
+      RM = rm -rf
+      FixPath = $1
+	  EXEC = out
+   endif
+endif
+
 #Hex file output directory
 OUTPUT = output
 
@@ -17,7 +30,7 @@ src/Instruction_to_Hex.c\
 test/Unit_test_Assembler.c\
 unity/unity.c\
 
-TEST_OUTPUT = $(BUILD)/Test_$(PROJECT_NAME).out
+TEST_OUTPUT = $(BUILD)/Test_$(PROJECT_NAME).$(EXEC)
 
 # All include folders with header files
 INC	= -Iinc\
@@ -27,7 +40,7 @@ INC	= -Iinc\
 INCLUDE_LIBS = -lcunit
 
 # Project Output name
-PROJECT_OUTPUT = $(BUILD)/$(PROJECT_NAME).out
+PROJECT_OUTPUT = $(BUILD)/$(PROJECT_NAME).$(EXEC)
 
 # Document files
 DOCUMENTATION_OUTPUT = documentation/html
@@ -39,11 +52,11 @@ $(PROJECT_NAME):all
 .PHONY: run clean test doc all
 
 all: $(SRC) $(BUILD) $(OUTPUT)
-	gcc $(SRC) $(INC) -o $(PROJECT_OUTPUT).out
+	gcc  $(SRC) $(INC) -o $(call FixPath,$(BUILD)/$(PROJECT_NAME).$(EXEC))
 
 # Call `make run` to run the application
 run:$(PROJECT_NAME)
-	./$(PROJECT_OUTPUT).out
+	$(call FixPath,$(BUILD)/$(PROJECT_NAME).$(EXEC))
 
 # Build and Run Unity Tests
 test: $(BUILD)
@@ -58,15 +71,15 @@ doc:
 analyze: test memcheck staticcheck coverage sanitize_check
 
 # Cppcheck
-staticcheck:
+staticcheck: $(BUILD)
 	cppcheck --enable=all -iunity .
 
 # Memory Checks
-memcheck:
+memcheck: $(BUILD)
 	valgrind ./$(TEST_OUTPUT)
 
 # Sanitize Check
-sanitize_check:
+sanitize_check: $(BUILD)
 	gcc -fsanitize=address -fno-omit-frame-pointer $(TEST_SRC) $(INC) -o $(TEST_OUTPUT) $(INCLUDE_LIBS)
 	./$(TEST_OUTPUT)
 
@@ -78,10 +91,10 @@ coverage:$(TEST_SRC)
 
 # Remove all the built files, invoke by `make clean`
 clean:
-	rm -rf $(BUILD) output *.gcda *.gcno *.gcov
+	$(RM) $(BUILD) output *.gcda *.gcno *.gcov
 
 clean_doc:
-	rm -rf $(DOCUMENTATION_OUTPUT)
+	$(RM) $(DOCUMENTATION_OUTPUT)
 	
 # Create new build folder if not present
 $(BUILD):
